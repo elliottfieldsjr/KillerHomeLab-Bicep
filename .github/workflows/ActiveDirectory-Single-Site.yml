@@ -24,7 +24,7 @@ jobs:
     - name: Deploy VNet1
       uses: azure/arm-deploy@v1
       with:
-        subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+        subscriptionId: ${{ secrets.AZURE_MAG_SUB1 }}
         resourceGroupName: ${{ secrets.AZURE_RG1 }}
         template: ./Deployments/ActiveDirectory-Single-Site/linkedtemplates/vnet.bicep
         parameters:
