@@ -1,7 +1,7 @@
 
 env:
   NamingConvention: "khl"
-  Vnet1ID: "10.1"
+  Vnet1ID: "10.11"
   Location1:   "USGovVirginia"
   
 on: [push]
