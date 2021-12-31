@@ -26,7 +26,7 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_MAG_SUB1 }}
         resourceGroupName: ${{ secrets.AZURE_RG1 }}
-        template: ./deployments/ActiveDirectory-Single-Site/linkedtemplates/vnet.bicep
+        template: /deployments/ActiveDirectory-Single-Site/linkedtemplates/vnet.bicep
         parameters:
           vnetName="${{env.NamingConvention}}-VNet1"
           vnetprefix="${{env.Vnet1ID}}.0.0/16"
