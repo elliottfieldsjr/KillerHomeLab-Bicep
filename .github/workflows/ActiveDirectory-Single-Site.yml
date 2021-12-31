@@ -1,5 +1,5 @@
 on: [push]
-name: Azure ARM
+name: ActiveDirectory-Single-Site
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -14,7 +14,7 @@ jobs:
         creds: ${{ secrets.AZURE_MAG_CREDENTIALS }}
         environment: 'AzureUSGovernment'
 
-      # Deploy Bicep file
+      # Deploy Virtual Network
     - name: deploy
       uses: azure/arm-deploy@v1
       with:
