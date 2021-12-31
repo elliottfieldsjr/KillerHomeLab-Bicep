@@ -7,7 +7,7 @@ env:
 on: [push]
 name: ActiveDirectory-Single-Site
 jobs:
-  build-and-deploy:
+  Deploy-Infrastructure:
     runs-on: ubuntu-latest
     steps:
 
