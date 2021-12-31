@@ -1,3 +1,9 @@
+
+env:
+  NamingConvention: "khl"
+  Vnet1ID: "10.1"
+  Location1:   "USGovVirginia"
+  
 on: [push]
 name: ActiveDirectory-Single-Site
 jobs:
@@ -15,11 +21,18 @@ jobs:
         environment: 'AzureUSGovernment'
 
       # Deploy Virtual Network
-    - name: deploy
+    - name: Deploy VNet1
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
-        template: ./main.bicep
-        parameters: storagePrefix=khl
-        failOnStdErr: false
+        template: ./Deployments/ActiveDirectory-Single-Site/linkedtemplates/vnet.bicep
+        parameters:
+          vnetName="${{env.NamingConvention}}-VNet1"
+          vnetprefix="${{env.Vnet1ID}}.0.0/16"
+          subnet1Name="${{env.NamingConvention}}-VNet1-Subnet1"
+          subnet1Prefix="${{env.Vnet1ID}}.1.0/24"
+          subnet2Name="${{env.NamingConvention}}-VNet1-Subnet2"
+          subnet2Prefix="${{env.Vnet1ID}}.2.0/24"  
+          BastionsubnetPrefix="${{env.Vnet1ID}}.253.0/24"  
+          location="${{env.Location1}}"        
