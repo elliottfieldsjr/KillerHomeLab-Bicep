@@ -29,3 +29,17 @@ module VNet1 'linkedtemplates/vnet.bicep' = {
     location: Location1
   }
 }
+
+module BastionHost1 'linkedtemplates/bastionhost.bicep' = {
+  name: 'BastionHost1'
+  params: {
+    publicIPAddressName: '${VNet1Name}-Bastion-pip'
+    AllocationMethod: 'Static'
+    vnetName: VNet1Name
+    subnetName: 'AzureBastionSubnet'
+    location: Location1
+  }
+  dependsOn: [
+    VNet1
+  ]
+}
