@@ -52,8 +52,8 @@ param location string
 
 var storageAccountType = 'Premium_LRS'
 var DataDiskSize = 50
-var subnetId = resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', ${vnetName}, ${subnetName})
-var VMId = resourceId(resourceGroup().name, 'Microsoft.Compute/virtualMachines', ${computerName})
+var subnetId = resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', '${vnetName}', '${subnetName}')
+var VMId = resourceId(resourceGroup().name, 'Microsoft.Compute/virtualMachines', '${computerName}')
 var NicName1 = '${computerName}-nic'
 
 resource NicName1 'Microsoft.Network/networkInterfaces@2018-11-01' = {
