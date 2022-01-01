@@ -1,13 +1,30 @@
 
 env:
+  TimeZone1:  "Eastern Standard Time"
+  adminUsername:  ${{ secrets.adminUsername }}
+  adminPassword:  ${{ secrets.adminPassword }}  
+  WindowsServerLicenseType: "Windows_Server"
+  WindowsClientLicenseType: "Windows_Client"
   NamingConvention: "khl"
-  Vnet1ID: "10.11"
-  Location1:   "USGovVirginia"
+  SubDNSDomain: ""
+  SubDNSBaseDN: ""
+  NetBiosDomain:  "killerhomelab"
+  InternalDomain: "killerhomelab"
+  InternalTLD:  "com"
+  ExternalDomain: "killerhomelab"
+  ExternalTLD:  "com"  
+  VNet1ID:  "10.1"
+  ReverseLookup1: "1.10"
+  DC1OSVersion: "2022-Datacenter"
+  WK1OSVersion: "Windows-11"
+  DC1VMSize:  "Standard_D2s_v3"
+  WK1VMSize:  "Standard_D2s_v3"
+  Location1:  "USGovVirginia"  
   
 on: [push]
 name: ActiveDirectory-Single-Site
 jobs:
-  Deploy-Infrastructure:
+  Deploy-ActiveDirectory-Site1:
     runs-on: ubuntu-latest
     steps:
 
@@ -25,27 +42,25 @@ jobs:
       with:
         subscriptionId: ${{ secrets.AZURE_MAG_SUB1 }}
         resourceGroupName: ${{ secrets.AZURE_RG1 }}
-        template: Deployments/ActiveDirectory-Single-Site/linkedtemplates/vnet.bicep
+        template: Deployments/ActiveDirectory-Single-Site/azuredeploy.bicep
         parameters:
-          vnetName="${{env.NamingConvention}}-VNet1"
-          vnetprefix="${{env.Vnet1ID}}.0.0/16"
-          subnet1Name="${{env.NamingConvention}}-VNet1-Subnet1"
-          subnet1Prefix="${{env.Vnet1ID}}.1.0/24"
-          subnet2Name="${{env.NamingConvention}}-VNet1-Subnet2"
-          subnet2Prefix="${{env.Vnet1ID}}.2.0/24"  
-          BastionsubnetPrefix="${{env.Vnet1ID}}.253.0/24"  
-          location="${{env.Location1}}"   
-
-    - name: 'Deploy Bastion Host1'
-      uses: azure/arm-deploy@v1
-      with:
-        deploymentname: 'DeployBastion1'
-        subscriptionId: ${{ secrets.AZURE_MAG_SUB1 }}
-        resourceGroupName: ${{ secrets.AZURE_RG1 }}
-        template: Deployments/ActiveDirectory-Single-Site/linkedtemplates/bastionhost.bicep
-        parameters:  
-          publicIPAddressName="${{env.NamingConvention}}-VNet1-Bastion-pip"
-          AllocationMethod="Static"
-          vnetName="${{env.NamingConvention}}-VNet1"          
-          subnetName="AzureBastionSubnet"
-          location="${{env.Location1}}"               
+          TimeZone="${{env.TimeZone1}}"
+          adminUsername="${{env.adminUsername}}"
+          adminPassword="${{env.adminPassword}}"
+          WindowsServerLicenseType="${{env.WindowsServerLicenseType}}"
+          WindowsClientLicenseType="${{env.WindowsClientLicenseType}}"
+          NamingConvention="${{env.NamingConvention}}"
+          SubDNSDomain="${{env.SubDNSDomain}}"
+          SubDNSBaseDN="${{env.SubDNSBaseDN}}"
+          NetBiosDomain="${{env.NetBiosDomain}}"
+          InternalDomain="${{env.InternalDomain}}"
+          InternalTLD="${{env.InternalDomain}}"
+          ExternalDomain="${{env.ExternalDomain}}"
+          ExternalTLD="${{env.ExternalTLD}}"
+          VNet1ID="${{env.VNet1ID}}"
+          ReverseLookup1="${{env.ReverseLookup1}}"
+          DC1OSVersion="${{env.DC1OSVersion}}"
+          WK1OSVersion="${{env.WK1OSVersion}}"
+          DC1VMSize="${{env.DC1VMSize}}"
+          WK1VMSize="${{env.WK1VMSize}}"
+          Location1="${{env.Location1}}"                                                                                             
