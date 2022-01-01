@@ -1,7 +1,16 @@
 
 env:
+  TimeZone1:  "Eastern Standard Time"
+  AutoShutdownEnabled:  "No"
+  AutoShutdownTime: "2000"
+  AutoShutdownEmail: "somename@domain.com"
+  adminUsername:  ${{ secrets.adminUsername }}
+  adminPassword:  ${{ secrets.adminPassword }}  
+  WindowsServerLicenseType: "Windows_Server"
   NamingConvention: "khl"
   VNet1ID:  "10.1"
+  DC1OSVersion: "2022-Datacenter"
+  DC1VMSize:  "Standard_D2s_v3"  
   Location1: "USGovVirginia"
   
 on: [push]
@@ -27,6 +36,15 @@ jobs:
         resourceGroupName: ${{ secrets.AZURE_RG1 }}
         template: Deployments/ActiveDirectory-Single-Site/azuredeploy.bicep
         parameters:
+          TimeZone="${{env.TimeZone1}}"
+          adminUsername="${{env.adminUsername}}"
+          adminPassword="${{env.adminPassword}}"
+          WindowsServerLicenseType="${{env.WindowsServerLicenseType}}"
           NamingConvention="${{env.NamingConvention}}"
           VNet1ID="${{env.VNet1ID}}"
+          DC1OSVersion="${{env.DC1OSVersion}}"
+          DC1VMSize="${{env.DC1VMSize}}"          
+          AutoShutdownEnabled="${{env.AutoShutdownEnabled}}"
+          AutoShutdownTime="${{env.AutoShutdownTime}}"
+          AutoShutdownEmail="${{env.AutoShutdownEmail}}"
           Location1="${{env.Location1}}"                                                                                            

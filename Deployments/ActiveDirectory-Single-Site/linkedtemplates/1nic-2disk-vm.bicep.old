@@ -1,20 +1,20 @@
+@description('Time Zone')
+param TimeZone1 string
+
+@description('Enable Auto Shutdown')
+param AutoShutdownEnabled string
+
+@description('Auto Shutdown Time')
+param AutoShutdownTime string
+
+@description('Auto Shutdown Email')
+param AutoShutdownEmail string
+
 @description('Computer Name')
 param computerName string
 
-@description('Network Card 1 IP Address')
-param Nic1IP string
-
-@description('Time Zone')
-param TimeZone string
-
-@description('Enable or Disable Auto-Shutdown')
-param AutoShutdownEnabled string
-
-@description('Time to Shutdown VM')
-param AutoShutdownTime string
-
-@description('Notification Email for Auto-Shutdown')
-param AutoShutdownEmail string
+@description('Computer IP Address')
+param computerIP string
 
 @description('Image Publisher')
 param Publisher string
@@ -51,21 +51,25 @@ param adminPassword string
 param location string
 
 var storageAccountType = 'Premium_LRS'
+var VMName_var = computerName
+var imagePublisher = Publisher
+var imageOffer = Offer
+var imageSKU = OSVersion
 var DataDiskSize = 50
-var subnetId = resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', ${vnetName}, ${subnetName})
-var VMId = resourceId(resourceGroup().name, 'Microsoft.Compute/virtualMachines', ${computerName})
-var NicName1 = '${computerName}-nic'
+var subnetId = resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', vnetName, subnetName)
+var NicName_var = '${computerName}-nic'
+var NicIPAddress = computerIP
 
-resource NicName1 'Microsoft.Network/networkInterfaces@2018-11-01' = {
-  name: NicName1
-  location: ${location}
+resource NicName 'Microsoft.Network/networkInterfaces@2018-11-01' = {
+  name: NicName_var
+  location: location
   properties: {
     ipConfigurations: [
       {
         name: 'ipconfig1'
         properties: {
           privateIPAllocationMethod: 'Static'
-          privateIPAddress: ${Nic1IP}
+          privateIPAddress: NicIPAddress
           subnet: {
             id: subnetId
           }
@@ -75,28 +79,28 @@ resource NicName1 'Microsoft.Network/networkInterfaces@2018-11-01' = {
   }
 }
 
-resource '${computerName_resource' 'Microsoft.Compute/virtualMachines@2019-03-01' = {
-  name: ${computerName}
-  location: ${location}
+resource VMName 'Microsoft.Compute/virtualMachines@2019-03-01' = {
+  name: VMName_var
+  location: location
   properties: {
     licenseType: licenseType
     hardwareProfile: {
-      vmSize: ${VMSize}
+      vmSize: VMSize
     }
     osProfile: {
-      computerName: ${computerName}
-      adminUsername: ${adminUsername}
-      adminPassword: ${adminPassword}
+      computerName: VMName_var
+      adminUsername: adminUsername
+      adminPassword: adminPassword
     }
     storageProfile: {
       imageReference: {
-        publisher: ${Publisher}
-        offer: ${Offer}
-        sku: ${OSVersion}
+        publisher: imagePublisher
+        offer: imageOffer
+        sku: imageSKU
         version: 'latest'
       }
       osDisk: {
-        name: '${computerName}_OSDisk'
+        name: '${VMName_var}_OSDisk'
         caching: 'ReadWrite'
         createOption: 'FromImage'
         managedDisk: {
@@ -105,7 +109,7 @@ resource '${computerName_resource' 'Microsoft.Compute/virtualMachines@2019-03-01
       }
       dataDisks: [
         {
-          name: '${computerName}_${DataDisk1Name}'
+          name: '${VMName_var}_${DataDisk1Name}'
           caching: 'None'
           diskSizeGB: DataDiskSize
           lun: 0
@@ -119,32 +123,9 @@ resource '${computerName_resource' 'Microsoft.Compute/virtualMachines@2019-03-01
     networkProfile: {
       networkInterfaces: [
         {
-          id: NicName1.id
+          id: NicName.id
         }
       ]
     }
   }
-}
-
-resource shutdown_computevm_computerName 'microsoft.devtestlab/schedules@2018-09-15' = if (AutoShutdownEnabled == 'Yes') {
-  name: 'shutdown-computevm-${computerName}'
-  location: location
-  properties: {
-    status: 'Enabled'
-    taskType: 'ComputeVmShutdownTask'
-    dailyRecurrence: {
-      time: ${AutoShutdownTime}
-    }
-    timeZoneId: ${TimeZone}
-    notificationSettings: {
-      status: 'Enabled'
-      timeInMinutes: 30
-      emailRecipient: ${AutoShutdownEmail}
-      notificationLocale: 'en'
-    }
-    targetResourceId: VMId
-  }
-  dependsOn: [
-    '${computerName}_resource'
-  ]
 }
