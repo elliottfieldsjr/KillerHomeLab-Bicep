@@ -20,7 +20,6 @@ jobs:
         creds: ${{ secrets.AZURE_MAG_CREDENTIALS }}
         environment: 'AzureUSGovernment'
 
-      # Deploy Virtual Network
     - name: Deploy VNet1
       uses: azure/arm-deploy@v1
       with:
@@ -35,4 +34,18 @@ jobs:
           subnet2Name="${{env.NamingConvention}}-VNet1-Subnet2"
           subnet2Prefix="${{env.Vnet1ID}}.2.0/24"  
           BastionsubnetPrefix="${{env.Vnet1ID}}.253.0/24"  
-          location="${{env.Location1}}"        
+          location="${{env.Location1}}"   
+
+    - name: 'Deploy Bastion Host1'
+      uses: azure/arm-deploy@v1
+      with:
+        deploymentname: 'DeployBastion1'
+        subscriptionId: ${{ secrets.AZURE_MAG_SUB1 }}
+        resourceGroupName: ${{ secrets.AZURE_RG1 }}
+        template: eployments/ActiveDirectory-Single-Site/linkedtemplates/bastionhost.bicep
+        parameters:  
+          publicIPAddressName="${{env.NamingConvention}}-VNet1-Bastion-pip"
+          AllocationMethod="Static"
+          vnetName="${{env.NamingConvention}}-VNet1"          
+          subnetName="AzureBastionSubnet"
+          location="${{env.Location1}}"               
