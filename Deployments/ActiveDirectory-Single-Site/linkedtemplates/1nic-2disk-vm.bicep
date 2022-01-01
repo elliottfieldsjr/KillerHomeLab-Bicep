@@ -54,10 +54,10 @@ var storageAccountType = 'Premium_LRS'
 var DataDiskSize = 50
 var subnetId = resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', '${vnetName}', '${subnetName}')
 var VMId = resourceId(resourceGroup().name, 'Microsoft.Compute/virtualMachines', '${computerName}')
-var NicName1_var = '${computerName}-nic'
+var NicName_var = '${computerName}-nic'
 
 resource NicName 'Microsoft.Network/networkInterfaces@2018-11-01' = {
-  name: NicName1_var
+  name: NicName_var
   location: '${location}'
   properties: {
     ipConfigurations: [
@@ -119,7 +119,7 @@ resource '${computerName}_resource' 'Microsoft.Compute/virtualMachines@2019-03-0
     networkProfile: {
       networkInterfaces: [
         {
-          id: NicName1.id
+          id: NicName.id
         }
       ]
     }
