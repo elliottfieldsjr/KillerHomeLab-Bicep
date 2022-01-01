@@ -65,7 +65,7 @@ resource NicName1 'Microsoft.Network/networkInterfaces@2018-11-01' = {
         name: 'ipconfig1'
         properties: {
           privateIPAllocationMethod: 'Static'
-          privateIPAddress: ${Nic1IP}
+          privateIPAddress: '${Nic1IP}'
           subnet: {
             id: subnetId
           }
