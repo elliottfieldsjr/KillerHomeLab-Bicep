@@ -58,7 +58,7 @@ var NicName1 = '${computerName}-nic'
 
 resource NicName1 'Microsoft.Network/networkInterfaces@2018-11-01' = {
   name: NicName1
-  location: ${location}
+  location: '${location}'
   properties: {
     ipConfigurations: [
       {
