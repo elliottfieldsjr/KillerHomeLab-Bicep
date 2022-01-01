@@ -42,7 +42,7 @@ jobs:
         deploymentname: 'DeployBastion1'
         subscriptionId: ${{ secrets.AZURE_MAG_SUB1 }}
         resourceGroupName: ${{ secrets.AZURE_RG1 }}
-        template: eployments/ActiveDirectory-Single-Site/linkedtemplates/bastionhost.bicep
+        template: Deployments/ActiveDirectory-Single-Site/linkedtemplates/bastionhost.bicep
         parameters:  
           publicIPAddressName="${{env.NamingConvention}}-VNet1-Bastion-pip"
           AllocationMethod="Static"
