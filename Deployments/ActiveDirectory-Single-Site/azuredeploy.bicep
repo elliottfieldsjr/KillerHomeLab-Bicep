@@ -35,7 +35,7 @@ param DC1VMSize string
 @description('Location 1 for Resources')
 param Location1 string
 
-var dc1lastoctet
+var dc1lastoctet = '101'
 var VNet1Name = '${NamingConvention}-VNet1'
 var VNet1Prefix = '${VNet1ID}.0.0/16'
 var VNet1subnet1Name = '${NamingConvention}-VNet1-Subnet1'
