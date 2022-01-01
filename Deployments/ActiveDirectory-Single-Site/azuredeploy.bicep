@@ -5,6 +5,9 @@ param NamingConvention string
 @description('Virtual Network 1 Prefix')
 param VNet1ID string
 
+@description('Location 1 for Resources')
+param Location1 string
+
 var VNet1Name = '${NamingConvention}-VNet1'
 var VNet1Prefix = '${VNet1ID}.0.0/16'
 var VNet1subnet1Name = '${NamingConvention}-VNet1-Subnet1'
@@ -23,6 +26,6 @@ module VNet1 'linkedtemplates/vnet.bicep' = {
     subnet2Name: VNet1subnet2Name
     subnet2Prefix: VNet1subnet2Prefix    
     BastionsubnetPrefix: VNet1BastionsubnetPrefix
-    location: resourceGroup().location
+    location: Location1
   }
 }

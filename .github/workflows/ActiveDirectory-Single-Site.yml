@@ -2,6 +2,7 @@
 env:
   NamingConvention: "khl"
   VNet1ID:  "10.1"
+  Location1: "USGovVirginia"
   
 on: [push]
 name: ActiveDirectory-Single-Site
@@ -27,4 +28,5 @@ jobs:
         template: Deployments/ActiveDirectory-Single-Site/azuredeploy.bicep
         parameters:
           NamingConvention="${{env.NamingConvention}}"
-          VNet1ID="${{env.VNet1ID}}"                                                                                            
+          VNet1ID="${{env.VNet1ID}}"
+          Location1="${{env.Location1}}"                                                                                            
