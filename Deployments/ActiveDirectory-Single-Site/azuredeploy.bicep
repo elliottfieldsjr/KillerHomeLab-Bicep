@@ -78,7 +78,7 @@ module BastionHost1 'linkedtemplates/bastionhost.bicep' = {
 module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
   name: 'deployDC1VM'
   params: {
-    computerName: dc1name
+    computerName: dc1Name
     Nic1IP: dc1IP
     Publisher: 'MicrosoftWindowsServer'
     Offer: 'WindowsServer'
