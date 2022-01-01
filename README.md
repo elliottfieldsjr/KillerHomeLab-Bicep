@@ -4,4 +4,4 @@ All labs with VM's deploy a Bastion Host for Remote Desktop access
 
 Click on the desired Lab for details
 
-<h2><a href="./Deployments/ActiveDirectory-Single-Site-Bicep"><img src="./Deployments/x_Images/ActiveDirectorySingleSite.png" alt="Active Directory Single-Site" width="300"/></a></h2>
+<h2><a href="./Deployments/ActiveDirectory-Single-Site"><img src="./Deployments/x_Images/ActiveDirectorySingleSite.png" alt="Active Directory Single-Site" width="300"/></a></h2>
