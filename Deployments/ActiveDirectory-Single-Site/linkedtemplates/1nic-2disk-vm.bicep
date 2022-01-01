@@ -75,24 +75,24 @@ resource NicName1 'Microsoft.Network/networkInterfaces@2018-11-01' = {
   }
 }
 
-resource '${computerName_resource' 'Microsoft.Compute/virtualMachines@2019-03-01' = {
-  name: ${computerName}
-  location: ${location}
+resource '${computerName}_resource' 'Microsoft.Compute/virtualMachines@2019-03-01' = {
+  name: '${computerName}'
+  location: '${location}'
   properties: {
-    licenseType: licenseType
+    licenseType: '${licenseType}'
     hardwareProfile: {
-      vmSize: ${VMSize}
+      vmSize: '${VMSize}'
     }
     osProfile: {
-      computerName: ${computerName}
-      adminUsername: ${adminUsername}
-      adminPassword: ${adminPassword}
+      computerName: '${computerName}'
+      adminUsername: '${adminUsername}'
+      adminPassword: '${adminPassword}'
     }
     storageProfile: {
       imageReference: {
-        publisher: ${Publisher}
-        offer: ${Offer}
-        sku: ${OSVersion}
+        publisher: '${Publisher}'
+        offer: '${Offer}'
+        sku: '${OSVersion}'
         version: 'latest'
       }
       osDisk: {
@@ -133,13 +133,13 @@ resource shutdown_computevm_computerName 'microsoft.devtestlab/schedules@2018-09
     status: 'Enabled'
     taskType: 'ComputeVmShutdownTask'
     dailyRecurrence: {
-      time: ${AutoShutdownTime}
+      time: '${AutoShutdownTime}'
     }
-    timeZoneId: ${TimeZone}
+    timeZoneId: '${TimeZone}'
     notificationSettings: {
       status: 'Enabled'
       timeInMinutes: 30
-      emailRecipient: ${AutoShutdownEmail}
+      emailRecipient: '${AutoShutdownEmail}'
       notificationLocale: 'en'
     }
     targetResourceId: VMId
