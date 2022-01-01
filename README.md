@@ -1,1 +1,7 @@
-# KillerHomeLab-Bicep
+# Collection of Labs to Deploy within Azure for Self-Study or Proof Of Concept
+
+All labs with VM's deploy a Bastion Host for Remote Desktop access
+
+Click on the desired Lab for details
+
+<h2><a href="./Deployments/ActiveDirectory-Single-Site-Bicep"><img src="./Deployments/x_Images/ActiveDirectorySingleSite.png" alt="Active Directory Single-Site" width="300"/></a></h2>
