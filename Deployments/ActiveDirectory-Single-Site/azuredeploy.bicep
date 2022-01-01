@@ -75,7 +75,7 @@ module BastionHost1 'linkedtemplates/bastionhost.bicep' = {
   ]
 }
 
-module deployDC1VM 'nestedtemplates/1nic-2disk-vm.bicep' = {
+module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
   name: 'deployDC1VM'
   params: {
     computerName: dc1name
