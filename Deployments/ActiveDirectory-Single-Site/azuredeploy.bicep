@@ -1,6 +1,6 @@
 @description('Time Zone')
 param TimeZone1 string
-
+/
 @description('Enable Auto Shutdown')
 param AutoShutdownEnabled string
 
@@ -84,10 +84,10 @@ module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
     Offer: 'WindowsServer'
     OSVersion: '${DC1OSVersion}'
     licenseType: '${WindowsServerLicenseType}'
-    DataDisk1Name: '${DCDataDisk1Name}'
+    DataDisk1Name: DCDataDisk1Name
     VMSize: '${DC1VMSize}'
     vnetName: VNet1Name
-    subnetName: VNet1subnet4Name
+    subnetName: VNet1subnet1Name
     adminUsername: '${adminUsername}'
     adminPassword: '${adminPassword}'
     TimeZone: '${TimeZone1}'
