@@ -2,7 +2,7 @@
 @description('Environment Naming Convention')
 param NamingConvention string
 
-@description('VNet1 Prefix')
+@description('Virtual Network 1 Prefix')
 param VNet1ID string
 
 var VNet1Name = '${NamingConvention}-VNet1'
