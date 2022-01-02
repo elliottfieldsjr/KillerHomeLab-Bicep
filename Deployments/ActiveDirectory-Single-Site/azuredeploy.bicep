@@ -57,7 +57,7 @@ module VNet1 'linkedtemplates/vnet.bicep' = {
     subnet2Name: VNet1subnet2Name
     subnet2Prefix: VNet1subnet2Prefix    
     BastionsubnetPrefix: VNet1BastionsubnetPrefix
-    location: '${Location1}'
+    location: ${Location1}
   }
 }
 
@@ -68,7 +68,7 @@ module BastionHost1 'linkedtemplates/bastionhost.bicep' = {
     AllocationMethod: 'Static'
     vnetName: VNet1Name
     subnetName: 'AzureBastionSubnet'
-    location: '${Location1}'
+    location: ${Location1}
   }
   dependsOn: [
     VNet1
@@ -82,19 +82,19 @@ module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
     Nic1IP: dc1IP
     Publisher: 'MicrosoftWindowsServer'
     Offer: 'WindowsServer'
-    OSVersion: '${DC1OSVersion}'
-    licenseType: '${WindowsServerLicenseType}'
+    OSVersion: ${DC1OSVersion}
+    licenseType: ${WindowsServerLicenseType}
     DataDisk1Name: DCDataDisk1Name
-    VMSize: '${DC1VMSize}'
+    VMSize: ${DC1VMSize}
     vnetName: VNet1Name
     subnetName: VNet1subnet1Name
-    adminUsername: '${adminUsername}'
-    adminPassword: '${adminPassword}'
-    TimeZone: '${TimeZone1}'
-    AutoShutdownEnabled: '${AutoShutdownEnabled}'
-    AutoShutdownTime: '${AutoShutdownTime}'
-    AutoShutdownEmail: '${AutoShutdownEmail}'
-    location: '${Location1}'
+    adminUsername: ${adminUsername}
+    adminPassword: ${adminPassword}
+    TimeZone: ${TimeZone1}
+    AutoShutdownEnabled: ${AutoShutdownEnabled}
+    AutoShutdownTime: ${AutoShutdownTime}
+    AutoShutdownEmail: ${AutoShutdownEmail}
+    location: ${Location1}
   }
   dependsOn: [
     VNet1
