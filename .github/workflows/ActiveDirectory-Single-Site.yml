@@ -36,7 +36,7 @@ jobs:
         resourceGroupName: ${{ secrets.AZURE_RG1 }}
         template: Deployments/ActiveDirectory-Single-Site/azuredeploy.bicep
         parameters:
-          TimeZoneName="${{env.TimeZone1}}"
+          TimeZone="${{env.TimeZone1}}"
           adminUsername="${{env.adminUsername}}"
           adminPassword="${{env.adminPassword}}"
           WindowsServerLicenseType="${{env.WindowsServerLicenseType}}"

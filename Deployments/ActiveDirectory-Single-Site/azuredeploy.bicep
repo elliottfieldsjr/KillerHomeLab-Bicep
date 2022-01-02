@@ -1,5 +1,5 @@
 @description('Time Zone')
-param TimeZoneName string
+param TimeZone string
 
 @description('Enable Auto Shutdown')
 param AutoShutdownEnabled string
@@ -46,7 +46,6 @@ var VNet1BastionsubnetPrefix = '${VNet1ID}.253.0/24'
 var dc1Name = '${NamingConvention}-dc-01'
 var dc1IP = '${VNet1ID}.1.${dc1lastoctet}'
 var DCDataDisk1Name = 'NTDS'
-var TimeZone = ${TimeZoneName}
 
 module VNet1 'linkedtemplates/vnet.bicep' = {
   name: 'VNet1'
@@ -58,7 +57,7 @@ module VNet1 'linkedtemplates/vnet.bicep' = {
     subnet2Name: VNet1subnet2Name
     subnet2Prefix: VNet1subnet2Prefix    
     BastionsubnetPrefix: VNet1BastionsubnetPrefix
-    location: ${Location1}
+    location: Location1
   }
 }
 
