@@ -1,6 +1,6 @@
 @description('Time Zone')
 param TimeZone1 string
-/
+
 @description('Enable Auto Shutdown')
 param AutoShutdownEnabled string
 
