@@ -55,7 +55,7 @@ var DataDiskSize = 50
 var subnetId = resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', '${vnetName}', '${subnetName}')
 var VMId = resourceId(resourceGroup().name, 'Microsoft.Compute/virtualMachines', '${computerName}')
 var NicName_var = '${computerName}-nic'
-var VMName_var = '${computerName}
+var VMName_var = '${computerName}'
 
 resource NicName 'Microsoft.Network/networkInterfaces@2018-11-01' = {
   name: NicName_var
