@@ -146,6 +146,6 @@ resource shutdown_computevm_computerName 'microsoft.devtestlab/schedules@2018-09
     targetResourceId: VMId
   }
   dependsOn: [
-    '${computerName}_resource'
+    VMName
   ]
 }
