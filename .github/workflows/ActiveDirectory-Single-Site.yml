@@ -16,8 +16,6 @@ env:
   NetBiosDomain:  "killerhomelab"
   InternalDomain: "killerhomelab"
   InternalTLD:  "com"  
-  artifactsLocation:    "deployment().properties.templateLink.uri"
-  artifactsLocationSasToken:  ""
   
 on: [push]
 name: ActiveDirectory-Single-Site
@@ -58,5 +56,3 @@ jobs:
           NetBiosDomain="${{env.NetBiosDomain}}"
           InternalDomain="${{env.InternalDomain}}"
           InternalTLD="${{env.InternalTLd}}"
-          artifactsLocation="${{env.artifactsLocation}}"                                                                                                    
-          artifactsLocationSasToken="${{env.artifactsLocationSasToken}}"
