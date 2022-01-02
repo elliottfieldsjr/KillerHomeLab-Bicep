@@ -1,5 +1,5 @@
 @description('Time Zone')
-param TimeZone1 string
+param TimeZoneName string
 
 @description('Enable Auto Shutdown')
 param AutoShutdownEnabled string
@@ -46,6 +46,7 @@ var VNet1BastionsubnetPrefix = '${VNet1ID}.253.0/24'
 var dc1Name = '${NamingConvention}-dc-01'
 var dc1IP = '${VNet1ID}.1.${dc1lastoctet}'
 var DCDataDisk1Name = 'NTDS'
+var TimeZone = ${TimeZoneName}
 
 module VNet1 'linkedtemplates/vnet.bicep' = {
   name: 'VNet1'
@@ -68,7 +69,7 @@ module BastionHost1 'linkedtemplates/bastionhost.bicep' = {
     AllocationMethod: 'Static'
     vnetName: VNet1Name
     subnetName: 'AzureBastionSubnet'
-    location: ${Location1}
+    location: Location1
   }
   dependsOn: [
     VNet1
@@ -82,19 +83,19 @@ module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
     ComputerIP1: dc1IP
     Publisher: 'MicrosoftWindowsServer'
     Offer: 'WindowsServer'
-    OSVersion: ${DC1OSVersion}
-    licenseType: ${WindowsServerLicenseType}
+    OSVersion: DC1OSVersion
+    licenseType: WindowsServerLicenseType
     DataDisk1Name: DCDataDisk1Name
-    VMSize: ${DC1VMSize}
+    VMSize: DC1VMSize
     vnetName: VNet1Name
     subnetName: VNet1subnet1Name
-    adminUsername: ${adminUsername}
-    adminPassword: ${adminPassword}
-    TimeZone: ${TimeZone1}
-    AutoShutdownEnabled: ${AutoShutdownEnabled}
-    AutoShutdownTime: ${AutoShutdownTime}
-    AutoShutdownEmail: ${AutoShutdownEmail}
-    location: ${Location1}
+    adminUsername: adminUsername
+    adminPassword: adminPassword
+    TimeZone: TimeZone
+    AutoShutdownEnabled: AutoShutdownEnabled
+    AutoShutdownTime: AutoShutdownTime
+    AutoShutdownEmail: AutoShutdownEmail
+    location: Location1
   }
   dependsOn: [
     VNet1
