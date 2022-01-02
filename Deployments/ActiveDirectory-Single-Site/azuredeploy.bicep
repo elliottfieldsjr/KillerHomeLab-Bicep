@@ -1,5 +1,5 @@
 @description('Time Zone')
-param TimeZone string
+param TimeZone1 string
 
 @description('Enable Auto Shutdown')
 param AutoShutdownEnabled string
@@ -98,5 +98,23 @@ module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
   }
   dependsOn: [
     VNet1
+  ]
+}
+
+module promotedc1 'linkedtemplates/firstdc.bicep' = {
+  name: 'promotedc1'
+  params: {
+    computerName: dc1name
+    TimeZone: TimeZone1
+    NetBiosDomain: NetBiosDomain
+    domainName: InternaldomainName
+    adminUsername: adminUsername
+    adminPassword: adminPassword
+    artifactsLocation: artifactsLocation
+    artifactsLocationSasToken: artifactsLocationSasToken
+    location: Location1
+  }
+  dependsOn: [
+    deployDC1VM
   ]
 }
