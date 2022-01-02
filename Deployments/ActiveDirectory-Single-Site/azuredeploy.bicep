@@ -79,7 +79,7 @@ module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
   name: 'deployDC1VM'
   params: {
     computerName: dc1Name
-    Nic1IP: dc1IP
+    ComputerIP1: dc1IP
     Publisher: 'MicrosoftWindowsServer'
     Offer: 'WindowsServer'
     OSVersion: ${DC1OSVersion}

@@ -2,7 +2,7 @@
 param computerName string
 
 @description('Network Card 1 IP Address')
-param Nic1IP string
+param ComputerIP1 string
 
 @description('Time Zone')
 param TimeZone string
@@ -56,6 +56,7 @@ var subnetId = resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetwor
 var VMId = resourceId(resourceGroup().name, 'Microsoft.Compute/virtualMachines', ${computerName})
 var NicName_var = '${computerName}-nic'
 var VMName_var = ${computerName}
+var NIC1ip = ${ComputerIP1}
 
 resource NicName 'Microsoft.Network/networkInterfaces@2018-11-01' = {
   name: NicName_var
@@ -66,7 +67,7 @@ resource NicName 'Microsoft.Network/networkInterfaces@2018-11-01' = {
         name: 'ipconfig1'
         properties: {
           privateIPAllocationMethod: 'Static'
-          privateIPAddress: ${Nic1IP}
+          privateIPAddress: Nic1IP
           subnet: {
             id: subnetId
           }
