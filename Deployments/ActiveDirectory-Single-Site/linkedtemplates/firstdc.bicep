@@ -30,7 +30,7 @@ param artifactsLocationSasToken string
 var ModulesURL = uri(artifactsLocation, 'DSC/FIRSTDC.zip${artifactsLocationSasToken}')
 var ConfigurationFunction = 'FIRSTDC.ps1\\FIRSTDC'
 
-resource computerName_Microsoft_Powershell_DSC 'Microsoft.Compute/virtualMachines/extensions@2019-03-01' = {
+resource computerName_Microsoft_Powershell_DSC 'Microsoft.Compute/virtualMachines/extensions@2021-07-01' = {
   name: '${computerName}/Microsoft.Powershell.DSC'
   location: location
   properties: {

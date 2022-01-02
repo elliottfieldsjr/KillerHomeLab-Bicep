@@ -47,6 +47,13 @@ param DC1VMSize string
 @description('Location 1 for Resources')
 param Location1 string
 
+@description('The location of resources, such as templates and DSC modules, that the template depends on')
+param artifactsLocation string = deployment().properties.templateLink.uri
+
+@description('Auto-generated token to access _artifactsLocation. Leave it blank unless you need to provide your own value.')
+@secure()
+param artifactsLocationSasToken string = ''
+
 var dc1lastoctet = '101'
 var VNet1Name = '${NamingConvention}-VNet1'
 var VNet1Prefix = '${VNet1ID}.0.0/16'
@@ -103,7 +110,7 @@ module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
     subnetName: VNet1subnet1Name
     adminUsername: adminUsername
     adminPassword: adminPassword
-    TimeZone: TimeZone
+    TimeZone: TimeZone1
     AutoShutdownEnabled: AutoShutdownEnabled
     AutoShutdownTime: AutoShutdownTime
     AutoShutdownEmail: AutoShutdownEmail

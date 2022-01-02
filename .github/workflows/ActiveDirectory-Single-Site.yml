@@ -7,15 +7,17 @@ env:
   adminUsername:  ${{ secrets.adminUsername }}
   adminPassword:  ${{ secrets.adminPassword }}  
   WindowsServerLicenseType: 'Windows_Server'
-  NamingConvention: 'khl'
-  VNet1ID:  '10.1'
-  DC1OSVersion: '2022-Datacenter'
-  DC1VMSize:  'Standard_D2s_v3'
-  Location1: 'USGovVirginia'
+  NamingConvention: "khl"
+  VNet1ID:  "10.1"
+  DC1OSVersion: "2022-Datacenter"
+  DC1VMSize:  "Standard_D2s_v3"
+  Location1: "USGovVirginia"
   SubDNSDomain: ""
   NetBiosDomain:  "killerhomelab"
   InternalDomain: "killerhomelab"
   InternalTLD:  "com"  
+  artifactsLocation:    "deployment().properties.templateLink.uri"
+  artifactsLocationSasToken:  ""
   
 on: [push]
 name: ActiveDirectory-Single-Site
@@ -55,4 +57,6 @@ jobs:
           SubDNSDomain="${{env.SubDNSDomain}}"
           NetBiosDomain="${{env.NetBiosDomain}}"
           InternalDomain="${{env.InternalDomain}}"
-          InternalTLD="${{env.InternalDomain}}"                                                                                                    
+          InternalTLD="${{env.InternalTLd}}"
+          artifactsLocation="${{env.artifactsLocation}}"                                                                                                    
+          artifactsLocationSasToken="${{env.artifactsLocationSasToken}}"
