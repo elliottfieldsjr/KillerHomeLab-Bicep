@@ -55,7 +55,6 @@ var DataDiskSize = 50
 var subnetId = resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks/subnets', vnetName, subnetName)
 var VMId = resourceId(resourceGroup().name, 'Microsoft.Compute/virtualMachines', computerName)
 var NicName1 = '${computerName}-nic1'
-var VMName_var = computerName
 
 resource NicName 'Microsoft.Network/networkInterfaces@2018-11-01' = {
   name: NicName1
@@ -77,7 +76,7 @@ resource NicName 'Microsoft.Network/networkInterfaces@2018-11-01' = {
 }
 
 resource VMName 'Microsoft.Compute/virtualMachines@2019-03-01' = {
-  name: VMName_var
+  name: computerName
   location: location
   properties: {
     licenseType: licenseType
@@ -85,7 +84,7 @@ resource VMName 'Microsoft.Compute/virtualMachines@2019-03-01' = {
       vmSize: VMSize
     }
     osProfile: {
-      computerName: VMName_var
+      computerName: computerName
       adminUsername: adminUsername
       adminPassword: adminPassword
     }
@@ -97,7 +96,7 @@ resource VMName 'Microsoft.Compute/virtualMachines@2019-03-01' = {
         version: 'latest'
       }
       osDisk: {
-        name: '${VMName_var}_OSDisk'
+        name: '${computerName}_OSDisk'
         caching: 'ReadWrite'
         createOption: 'FromImage'
         managedDisk: {
@@ -106,7 +105,7 @@ resource VMName 'Microsoft.Compute/virtualMachines@2019-03-01' = {
       }
       dataDisks: [
         {
-          name: '${VMName_var}_${DataDisk1Name}'
+          name: '${computerName}_${DataDisk1Name}'
           caching: 'None'
           diskSizeGB: DataDiskSize
           lun: 0
