@@ -12,6 +12,10 @@ env:
   DC1OSVersion: '2022-Datacenter'
   DC1VMSize:  'Standard_D2s_v3'
   Location1: 'USGovVirginia'
+  SubDNSDomain: ""
+  NetBiosDomain:  "killerhomelab"
+  InternalDomain: "killerhomelab"
+  InternalTLD:  "com"  
   
 on: [push]
 name: ActiveDirectory-Single-Site
@@ -47,4 +51,8 @@ jobs:
           AutoShutdownEnabled="${{env.AutoShutdownEnabled}}"
           AutoShutdownTime="${{env.AutoShutdownTime}}"
           AutoShutdownEmail="${{env.AutoShutdownEmail}}"
-          Location1="${{env.Location1}}"                                                                                            
+          Location1="${{env.Location1}}"
+          SubDNSDomain="${{env.SubDNSDomain}}"
+          NetBiosDomain="${{env.NetBiosDomain}}"
+          InternalDomain="${{env.InternalDomain}}"
+          InternalTLD="${{env.InternalDomain}}"                                                                                                    

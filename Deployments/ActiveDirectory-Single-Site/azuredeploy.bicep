@@ -23,6 +23,18 @@ param WindowsServerLicenseType string
 @description('Environment Naming Convention')
 param NamingConvention string
 
+@description('Sub DNS Domain Name Example:  sub1. must include a DOT AT END')
+param SubDNSDomain string
+
+@description('NetBios Parent Domain Name')
+param NetBiosDomain string
+
+@description('NetBios Parent Domain Name')
+param InternalDomain string
+
+@description('Internal Top-Level Domain Name')
+param InternalTLD string
+
 @description('Virtual Network 1 Prefix')
 param VNet1ID string
 
@@ -46,6 +58,7 @@ var VNet1BastionsubnetPrefix = '${VNet1ID}.253.0/24'
 var dc1Name = '${NamingConvention}-dc-01'
 var dc1IP = '${VNet1ID}.1.${dc1lastoctet}'
 var DCDataDisk1Name = 'NTDS'
+var InternalDomainName = '${SubDNSDomain}${InternalDomain}.${InternalTLD}'
 
 module VNet1 'linkedtemplates/vnet.bicep' = {
   name: 'VNet1'
@@ -107,7 +120,7 @@ module promotedc1 'linkedtemplates/firstdc.bicep' = {
     computerName: dc1name
     TimeZone: TimeZone1
     NetBiosDomain: NetBiosDomain
-    domainName: InternaldomainName
+    domainName: InternalDomainName
     adminUsername: adminUsername
     adminPassword: adminPassword
     artifactsLocation: artifactsLocation
