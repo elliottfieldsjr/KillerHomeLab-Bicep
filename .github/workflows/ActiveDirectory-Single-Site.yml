@@ -6,12 +6,12 @@ env:
   AutoShutdownEmail: "somename@domain.com"
   adminUsername:  ${{ secrets.adminUsername }}
   adminPassword:  ${{ secrets.adminPassword }}  
-  WindowsServerLicenseType: "Windows_Server"
-  NamingConvention: "khl"
-  VNet1ID:  "10.1"
-  DC1OSVersion: "2022-Datacenter"
-  DC1VMSize:  "Standard_D2s_v3"  
-  Location1: "USGovVirginia"
+  WindowsServerLicenseType: 'Windows_Server'
+  NamingConvention: 'khl'
+  VNet1ID:  '10.1'
+  DC1OSVersion: '2022-Datacenter'
+  DC1VMSize:  'Standard_D2s_v3'
+  Location1: 'USGovVirginia'
   
 on: [push]
 name: ActiveDirectory-Single-Site
