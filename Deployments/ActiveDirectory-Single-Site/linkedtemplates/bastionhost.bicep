@@ -24,7 +24,7 @@ resource publicIPAddressName_resource 'Microsoft.Network/publicIPAddresses@2019-
   }
 }
 
-resource vnetName_resource 'Microsoft.Network/bastionHosts@2020-04-01' = {
+resource vnetName_resource 'Microsoft.Network/bastionHosts@2021-05-01' = {
   name: vnetName
   location: location
   properties: {

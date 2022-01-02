@@ -56,7 +56,7 @@ var subnetId = resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetwor
 var VMId = resourceId(resourceGroup().name, 'Microsoft.Compute/virtualMachines', computerName)
 var NicName1 = '${computerName}-nic1'
 
-resource NicName 'Microsoft.Network/networkInterfaces@2018-11-01' = {
+resource NicName 'Microsoft.Network/networkInterfaces@2021-05-01' = {
   name: NicName1
   location: location
   properties: {
@@ -75,7 +75,7 @@ resource NicName 'Microsoft.Network/networkInterfaces@2018-11-01' = {
   }
 }
 
-resource VMName 'Microsoft.Compute/virtualMachines@2019-03-01' = {
+resource VMName 'Microsoft.Compute/virtualMachines@2021-07-01' = {
   name: computerName
   location: location
   properties: {

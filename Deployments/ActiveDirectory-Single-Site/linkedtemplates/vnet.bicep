@@ -22,7 +22,7 @@ param BastionsubnetPrefix string
 @description('Resource Location')
 param location string
 
-resource vnetName_resource 'Microsoft.Network/virtualNetworks@2020-04-01' = {
+resource vnetName_resource 'Microsoft.Network/virtualNetworks@2021-05-01' = {
   name: vnetName
   location: location
   properties: {
