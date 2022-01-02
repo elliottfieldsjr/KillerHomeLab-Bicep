@@ -124,7 +124,7 @@ module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
 module promotedc1 'linkedtemplates/firstdc.bicep' = {
   name: 'promotedc1'
   params: {
-    computerName: dc1name
+    computerName: dc1Name
     TimeZone: TimeZone1
     NetBiosDomain: NetBiosDomain
     domainName: InternalDomainName
