@@ -67,7 +67,7 @@ var dc1IP = '${VNet1ID}.1.${dc1lastoctet}'
 var DCDataDisk1Name = 'NTDS'
 var InternalDomainName = '${SubDNSDomain}${InternalDomain}.${InternalTLD}'
 
-module VNet1 'linkedtemplates/vnet.bicep' = {
+module VNet1 'modules/vnet.bicep' = {
   name: 'VNet1'
   params: {
     vnetName: VNet1Name
@@ -81,7 +81,7 @@ module VNet1 'linkedtemplates/vnet.bicep' = {
   }
 }
 
-module BastionHost1 'linkedtemplates/bastionhost.bicep' = {
+module BastionHost1 'modules/bastionhost.bicep' = {
   name: 'BastionHost1'
   params: {
     publicIPAddressName: '${VNet1Name}-Bastion-pip'
@@ -95,7 +95,7 @@ module BastionHost1 'linkedtemplates/bastionhost.bicep' = {
   ]
 }
 
-module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
+module deployDC1VM 'modules/1nic-2disk-vm.bicep' = {
   name: 'deployDC1VM'
   params: {
     computerName: dc1Name
@@ -121,7 +121,7 @@ module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
   ]
 }
 
-module promotedc1 'linkedtemplates/firstdc.bicep' = {
+module promotedc1 'modules/firstdc.bicep' = {
   name: 'PromoteDC1'
   params: {
     computerName: dc1Name
@@ -136,5 +136,38 @@ module promotedc1 'linkedtemplates/firstdc.bicep' = {
   }
   dependsOn: [
     deployDC1VM
+  ]
+}
+
+module UpdateVNet1DNS_1 'modules/updatevnetdns.bicep' = {
+  name: 'UpdateVNet1DNS-1'
+  params: {
+    vnetName: VNet1Name
+    vnetprefix: VNet1Prefix
+    subnet1Name: VNet1subnet1Name
+    subnet1Prefix: VNet1subnet1Prefix
+    subnet2Name: VNet1subnet2Name
+    subnet2Prefix: VNet1subnet2Prefix
+    BastionsubnetPrefix: VNet1BastionsubnetPrefix
+    DNSServerIP: [
+      dc1IP
+    ]
+    location: Location1
+  }
+  dependsOn: [
+    promotedc1
+  ]
+}
+
+module restartdc1 'modules/restartvm.bicep' = {
+  name: 'restartdc1'
+  params: {
+    computerName: dc1Name
+    artifactsLocation: artifactsLocation
+    artifactsLocationSasToken: artifactsLocationSasToken
+    location: Location1
+  }
+  dependsOn: [
+    UpdateVNet1DNS_1
   ]
 }
