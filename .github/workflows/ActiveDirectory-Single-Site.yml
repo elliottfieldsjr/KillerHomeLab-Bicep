@@ -45,7 +45,7 @@ jobs:
         creds: "${{env.Creds}}"
         environment: "${{env.AzureCloudEnvironment}}"
 
-    - name: ActiveDirectory-Single-Site
+    - name: '{{ DeploymentName }}'
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: "${{env.Subscription1ID}}"
