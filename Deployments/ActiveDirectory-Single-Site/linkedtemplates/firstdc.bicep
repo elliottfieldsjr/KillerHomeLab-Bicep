@@ -25,7 +25,7 @@ param artifactsLocation string
 
 @description('Auto-generated token to access _artifactsLocation')
 @secure()
-param artifactsLocationSasToken string = ''
+param artifactsLocationSasToken string
 
 var ModulesURL_var = uri('${artifactsLocation}', 'DSC/FIRSTDC.zip${artifactsLocationSasToken}')
 var ConfigurationFunction = 'FIRSTDC.ps1\\FIRSTDC'

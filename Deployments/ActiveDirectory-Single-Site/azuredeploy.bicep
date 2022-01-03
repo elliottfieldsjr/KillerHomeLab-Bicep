@@ -47,6 +47,13 @@ param DC1VMSize string
 @description('Location 1 for Resources')
 param Location1 string
 
+@description('The location of resources, such as templates and DSC modules, that the template depends on')
+param artifactsLocation string
+
+@description('Auto-generated token to access _artifactsLocation')
+@secure()
+param artifactsLocationSasToken string
+
 var dc1lastoctet = '101'
 var VNet1Name = '${NamingConvention}-VNet1'
 var VNet1Prefix = '${VNet1ID}.0.0/16'
@@ -124,7 +131,8 @@ module promotedc1 'linkedtemplates/firstdc.bicep' = {
     adminUsername: adminUsername
     adminPassword: adminPassword
     location: Location1          
-    artifactsLocation:  deployment().properties.templateLink.uri
+    artifactsLocation:  artifactsLocation
+    artifactsLocationSasToken: artifactsLocationSasToken
   }
   dependsOn: [
     deployDC1VM

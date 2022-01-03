@@ -15,7 +15,9 @@ env:
   SubDNSDomain: ""
   NetBiosDomain:  "killerhomelab"
   InternalDomain: "killerhomelab"
-  InternalTLD:  "com"  
+  InternalTLD:  "com"
+  artifactsLocation: "https://raw.githubusercontent.com/elliottfieldsjr/KillerHomeLab-Bicep/main/Deployments/ActiveDirectory-Single-Site"
+  artifactsLocationSasToken: ""
   
 on: [push]
 name: ActiveDirectory-Single-Site
@@ -56,3 +58,5 @@ jobs:
           NetBiosDomain="${{env.NetBiosDomain}}"
           InternalDomain="${{env.InternalDomain}}"
           InternalTLD="${{env.InternalTLd}}"
+          artifactsLocation="${{env.artifactsLocation}}"
+          artifactsLocationSasToken="${{env.aartifactsLocationSasToken}}"
