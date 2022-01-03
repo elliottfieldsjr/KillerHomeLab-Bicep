@@ -49,7 +49,7 @@ jobs:
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: "${{env.Subscription1ID}}"
-        resourceGroupName: "${{env.ResourceGroupName}}"
+        resourceGroupName: "${{env.ResourceGroup1Name}}"
         template: Deployments/ActiveDirectory-Single-Site/azuredeploy.bicep
         parameters:
           TimeZone1="${{env.TimeZone1}}"
