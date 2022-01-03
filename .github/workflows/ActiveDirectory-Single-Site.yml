@@ -2,7 +2,7 @@
 env:
   Creds: ${{ secrets.AZURE_MAG_CREDENTIALS }}
   SubscriptionID1: ${{ secrets.AZURE_MAG_SUB1 }}
-  ResourceGroup1Name:  "Bice-GH2"
+  ResourceGroup1Name:  "Bicep-GH2"
   AzureCloudEnvironment:  "AzureUSGovernment"
   DeploymentName: "ActiveDirectory-Single-Site"
   TimeZone1:  "Eastern Standard Time"
@@ -30,7 +30,7 @@ env:
   artifactsLocationSasToken: ""
   
 on: [push]
-name: "${{env.DeploymentName}}"
+name: '${{env.DeploymentName}}'
 jobs:
   Deploy-ActiveDirectory-Site1:
     runs-on: ubuntu-latest
