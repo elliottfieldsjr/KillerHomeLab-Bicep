@@ -21,11 +21,11 @@ param adminUsername string
 param adminPassword string
 
 @description('The location of resources, such as templates and DSC modules, that the template depends on')
-param artifactsLocation string
+param artifactsLocation string = deployment().properties.templateLink.uri
 
 @description('Auto-generated token to access _artifactsLocation')
 @secure()
-param artifactsLocationSasToken string
+param artifactsLocationSasToken string = ''
 
 var ModulesURL_var = uri('${artifactsLocation}', 'DSC/FIRSTDC.zip${artifactsLocationSasToken}')
 var ConfigurationFunction = 'FIRSTDC.ps1\\FIRSTDC'
