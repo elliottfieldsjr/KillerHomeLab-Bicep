@@ -30,7 +30,7 @@ env:
   artifactsLocationSasToken: ""
   
 on: [push]
-name: {{DeploymentName}}
+name: '{{ DeploymentName }}'
 jobs:
   Deploy-ActiveDirectory-Site1:
     runs-on: ubuntu-latest
