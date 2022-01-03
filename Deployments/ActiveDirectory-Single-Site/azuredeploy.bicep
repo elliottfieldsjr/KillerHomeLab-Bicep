@@ -317,6 +317,7 @@ module DomainJoinWK1VM_11 'modules/domainjoin.bicep' = if (WK1OSVersion == 'Wind
   }
   dependsOn: [
     deployWK1VM_11
+    createous
   ]
 }
 
@@ -332,6 +333,7 @@ module DomainJoinWK1VM_10 'modules/domainjoin.bicep' = if (WK1OSVersion == 'Wind
   }
   dependsOn: [
     deployWK1VM_10
+    createous
   ]
 }
 
@@ -347,5 +349,6 @@ module DomainJoinWK1VM_7 'modules/domainjoin.bicep' = if (WK1OSVersion == 'Windo
   }
   dependsOn: [
     deployWK1VM_7
+    createous
   ]
 }
