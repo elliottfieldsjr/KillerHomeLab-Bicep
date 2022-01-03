@@ -1,5 +1,10 @@
 
 env:
+  Creds: ${{ secrets.AZURE_MAG_CREDENTIALS }}
+  SubscriptionID1: ${{ secrets.AZURE_MAG_SUB1 }}
+  ResourceGroup1Name:  "Bice-GH2"
+  AzureCloudEnvironment:  "AzureUSGovernment"
+  DeploymentName: "ActiveDirectory-Single-Site"
   TimeZone1:  "Eastern Standard Time"
   AutoShutdownEnabled:  "Yes"
   AutoShutdownTime: "2000"
@@ -14,18 +19,17 @@ env:
   NetBiosDomain:  "killerhomelab"
   InternalDomain: "killerhomelab"
   InternalTLD:  "com"  
-  VNet1ID:  "10.1"
+  VNet1ID:  "10.1"  ReverseLookup1: "1.10"      
   DC1OSVersion: "2022-Datacenter"
   WK1OSVersion: "Windows-11"
   DC1VMSize:  "Standard_D2s_v3"  
   WK1VMSize:  "Standard_D2s_v3"    
-  ReverseLookup1: "1.10"    
   Location1: "USGovVirginia"
-  artifactsLocation: "https://raw.githubusercontent.com/elliottfieldsjr/KillerHomeLab-Bicep/main/Deployments/ActiveDirectory-Single-Site/"
+  artifactsLocation: "https://raw.githubusercontent.com/elliottfieldsjr/KillerHomeLab-Bicep/main/Deployments/${{env.DeploymentName}}/"
   artifactsLocationSasToken: ""
   
 on: [push]
-name: ActiveDirectory-Single-Site
+name: ${{env.DeploymentName}}
 jobs:
   Deploy-ActiveDirectory-Site1:
     runs-on: ubuntu-latest
@@ -37,15 +41,23 @@ jobs:
       # Log into Azure
     - uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_MAG_CREDENTIALS }}
-        environment: 'AzureUSGovernment'
+        creds: ${{env.Creds}}
+        environment: ${{env.AzureCloudEnvironment}}
 
-    - name: Deploy VNet1
+    - name: Create Resource Group
+      uses: Azure/powershell@v1
+      with:
+        inlineScript: |
+          $RGCheck = Get-AzResourceGroup -Name "${{env.ResourceGroup1Name}}" -ErrorAction 0
+          IF ($RGCheck -eq $Null) {New-AzResourceGroup -Name "${{env.ResourceGroup1Name}}" -Location "${{env.Location1}}"}
+        azPSVersion: 3.1.0         
+
+    - name: ${{env.DeploymentName}}
       uses: azure/arm-deploy@v1
       with:
-        subscriptionId: ${{ secrets.AZURE_MAG_SUB1 }}
-        resourceGroupName: ${{ secrets.AZURE_RG1 }}
-        template: Deployments/ActiveDirectory-Single-Site/azuredeploy.bicep
+        subscriptionId: ${{env.Subscription1ID}}
+        resourceGroupName: ${{env.ResourceGroupName}}
+        template: "Deployments/${{env.DeploymentName}}/azuredeploy.bicep"
         parameters:
           TimeZone1="${{env.TimeZone1}}"
           AutoShutdownEnabled="${{env.AutoShutdownEnabled}}"
@@ -69,4 +81,4 @@ jobs:
           ReverseLookup1="${{env.ReverseLookup1}}"          
           Location1="${{env.Location1}}"
           artifactsLocation="${{env.artifactsLocation}}"
-          artifactsLocationSasToken="${{env.aartifactsLocationSasToken}}"
+          artifactsLocationSasToken="${{env.artifactsLocationSasToken}}"
