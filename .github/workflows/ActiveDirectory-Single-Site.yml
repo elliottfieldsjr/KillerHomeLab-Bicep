@@ -2,7 +2,7 @@
 env:
   Creds: ${{ secrets.AZURE_MAG_CREDENTIALS }}
   SubscriptionID1: ${{ secrets.AZURE_MAG_SUB1 }}
-  ResourceGroup1Name:  "Bicep-GH2"
+  ResourceGroup1Name:  "Bicep-GH1"
   AzureCloudEnvironment:  "AzureUSGovernment"
   DeploymentName: "ActiveDirectory-Single-Site"
   TimeZone1:  "Eastern Standard Time"
@@ -44,14 +44,6 @@ jobs:
       with:
         creds: "${{env.Creds}}"
         environment: "${{env.AzureCloudEnvironment}}"
-
-    - name: Create Resource Group
-      uses: Azure/powershell@v1
-      with:
-        inlineScript: |
-          $RGCheck = Get-AzResourceGroup -Name "${{env.ResourceGroup1Name}}" -ErrorAction 0
-          IF ($RGCheck -eq $Null) {New-AzResourceGroup -Name "${{env.ResourceGroup1Name}}" -Location "${{env.Location1}}"}
-        azPSVersion: 3.1.0         
 
     - name: ActiveDirectory-Single-Site
       uses: azure/arm-deploy@v1
