@@ -16,7 +16,7 @@ env:
   NetBiosDomain:  "killerhomelab"
   InternalDomain: "killerhomelab"
   InternalTLD:  "com"
-  artifactsLocation: "https://raw.githubusercontent.com/elliottfieldsjr/KillerHomeLab-Bicep/main/Deployments/ActiveDirectory-Single-Site"
+  artifactsLocation: "https://raw.githubusercontent.com/elliottfieldsjr/KillerHomeLab-Bicep/main/Deployments/ActiveDirectory-Single-Site/"
   artifactsLocationSasToken: ""
   
 on: [push]
