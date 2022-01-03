@@ -43,7 +43,7 @@ jobs:
     - uses: azure/login@v1
       with:
         creds: "${{env.Creds}}"
-        environment: "${{env.AzureCloudEnvironment}}""
+        environment: "${{env.AzureCloudEnvironment}}"
 
     - name: Create Resource Group
       uses: Azure/powershell@v1
