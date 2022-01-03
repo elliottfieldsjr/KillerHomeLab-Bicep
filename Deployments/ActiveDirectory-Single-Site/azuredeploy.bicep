@@ -85,6 +85,7 @@ var wk1IP = '${VNet1ID}.2.${wk1lastoctet}'
 var DCDataDisk1Name = 'NTDS'
 var InternalDomainName = '${SubDNSDomain}${InternalDomain}.${InternalTLD}'
 var ReverseZone1 = '1.${ReverseLookup1}'
+var ForwardZone1 = '${VNet1ID}.1'
 var BaseDN = '${SubDNSBaseDN}DC=${InternalDomain},DC=${InternalTLD}'
 var WIN11OUPath = 'OU=Windows 11,OU=Workstations,${BaseDN}'
 var WIN10OUPath = 'OU=Windows 10,OU=Workstations,${BaseDN}'
@@ -202,6 +203,7 @@ module configdns 'modules/configdnsint.bicep' = {
     NetBiosDomain: NetBiosDomain
     InternalDomainName: InternalDomainName
     ReverseLookup1: ReverseZone1
+    ForwardLookup1: ForwardZone1    
     dc1lastoctet: dc1lastoctet
     adminUsername: adminUsername
     adminPassword: adminPassword

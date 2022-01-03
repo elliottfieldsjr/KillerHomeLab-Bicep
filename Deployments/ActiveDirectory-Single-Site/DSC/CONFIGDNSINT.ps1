@@ -4,8 +4,7 @@
    (
         [String]$computerName,
         [String]$NetBiosDomain,
-        [String]$InternaldomainName,
-        [String]$ExternaldomainName,
+        [String]$InternalDomainName,
         [String]$ReverseLookup1,
         [String]$ForwardLookup1,
         [String]$dc1lastoctet,

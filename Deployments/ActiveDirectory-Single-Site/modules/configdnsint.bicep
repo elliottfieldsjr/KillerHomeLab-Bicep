@@ -10,6 +10,9 @@ param InternalDomainName string
 @description('The name of Reverse Lookup Zone 1 Network ID')
 param ReverseLookup1 string
 
+@description('The name of Forward Lookup Zone 1 Network ID')
+param ForwardLookup1 string
+
 @description('DC1 Last IP Octet')
 param dc1lastoctet string
 
@@ -47,8 +50,9 @@ resource computerName_Microsoft_Powershell_DSC 'Microsoft.Compute/virtualMachine
       Properties: {
         computerName: computerName
         NetBiosDomain: NetBiosDomain
-        InternaldomainName: InternalDomainName
+        InternalDomainName: InternalDomainName
         ReverseLookup1: ReverseLookup1
+        ForwardLookup1: ForwardLookup1        
         dc1lastoctet: dc1lastoctet
         AdminCreds: {
           UserName: adminUsername

@@ -18,7 +18,7 @@ env:
   DC1OSVersion: "2022-Datacenter"
   WK1OSVersion: "Windows-11"
   DC1VMSize:  "Standard_D2s_v3"  
-  WL1VMSize:  "Standard_D2s_v3"    
+  WK1VMSize:  "Standard_D2s_v3"    
   ReverseLookup1: "1.10"    
   Location1: "USGovVirginia"
   artifactsLocation: "https://raw.githubusercontent.com/elliottfieldsjr/KillerHomeLab-Bicep/main/Deployments/ActiveDirectory-Single-Site/"
