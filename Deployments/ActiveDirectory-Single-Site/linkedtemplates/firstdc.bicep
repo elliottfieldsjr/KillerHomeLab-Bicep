@@ -20,15 +20,7 @@ param adminUsername string
 @secure()
 param adminPassword string
 
-@description('The location of resources, such as templates and DSC modules, that the template depends on')
-param artifactsLocation string = 'uri(deployment().properties.templateLink.uri'
-
-
-@description('Auto-generated token to access _artifactsLocation')
-@secure()
-param artifactsLocationSasToken string = ''
-
-var ModulesURL_var = uri('${artifactsLocation}', 'DSC/FIRSTDC.zip${artifactsLocationSasToken}')
+var ModulesURL_var = uri(deployment().properties.templateLink.uri, 'DSC/FIRSTDC.zip')
 var ConfigurationFunction = 'FIRSTDC.ps1\\FIRSTDC'
 
 resource computerName_Microsoft_Powershell_DSC 'Microsoft.Compute/virtualMachines/extensions@2021-07-01' = {
