@@ -50,7 +50,7 @@ jobs:
       with:
         subscriptionId: "${{env.Subscription1ID}}"
         resourceGroupName: "${{env.ResourceGroup1Name}}"
-        template: "Deployments/ActiveDirectory-Single-Site/azuredeploy.bicep"
+        template: "Deployments/${{env.DeploymentName}}/azuredeploy.bicep"
         parameters:
           TimeZone1="${{env.TimeZone1}}"
           AutoShutdownEnabled="${{env.AutoShutdownEnabled}}"
