@@ -120,7 +120,7 @@ resource promotedc1 'Microsoft.Resources/deployments@2021-04-01' = {
   properties: {
     mode: 'Incremental'
     parameters: {
-      computerName: 'dc1Name'
+      computerName: 'khl-dc-01'
       TimeZone: TimeZone1
       NetBiosDomain: NetBiosDomain
       domainName: InternalDomainName
