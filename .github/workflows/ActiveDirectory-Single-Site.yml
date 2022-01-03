@@ -26,7 +26,7 @@ env:
   DC1VMSize:  "Standard_D2s_v3"  
   WK1VMSize:  "Standard_D2s_v3"    
   Location1: "USGovVirginia"
-  artifactsLocation: "https://raw.githubusercontent.com/elliottfieldsjr/KillerHomeLab-Bicep/main/Deployments/'${{env.DeploymentName}}'/"
+  artifactsLocation: "https://raw.githubusercontent.com/elliottfieldsjr/KillerHomeLab-Bicep/main/Deployments"
   artifactsLocationSasToken: ""
   
 on: [push]
@@ -82,4 +82,4 @@ jobs:
           ReverseLookup1="${{env.ReverseLookup1}}"          
           Location1="${{env.Location1}}"
           artifactsLocation="${{env.artifactsLocation}}"
-          artifactsLocationSasToken="${{env.artifactsLocationSasToken}}"
+          artifactsLocationSasToken="${{env.artifactsLocationSasToken}}/${{env.DeploymentName}}/"
