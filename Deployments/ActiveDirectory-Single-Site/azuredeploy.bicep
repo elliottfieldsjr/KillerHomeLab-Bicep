@@ -243,7 +243,7 @@ module deployWK1VM_11 'modules/1nic-1disk-vm.bicep' = if (WK1OSVersion == 'Windo
     licenseType: WindowsClientLicenseType
     VMSize: WK1VMSize
     vnetName: VNet1Name
-    subnetName: VNet1subnet1Name
+    subnetName: VNet1subnet2Name
     adminUsername: adminUsername
     adminPassword: adminPassword
     location: Location1

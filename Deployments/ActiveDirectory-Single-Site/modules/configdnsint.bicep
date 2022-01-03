@@ -30,8 +30,8 @@ param artifactsLocation string
 @secure()
 param artifactsLocationSasToken string
 
-var ModulesURL = uri(artifactsLocation, 'DSC/CONFIGDNS.zip${artifactsLocationSasToken}')
-var ConfigurationFunction = 'CONFIGDNS.ps1\\CONFIGDNS'
+var ModulesURL = uri(artifactsLocation, 'DSC/CONFIGDNSINT.zip${artifactsLocationSasToken}')
+var ConfigurationFunction = 'CONFIGDNSINT.ps1\\CONFIGDNSINT'
 
 resource computerName_Microsoft_Powershell_DSC 'Microsoft.Compute/virtualMachines/extensions@2021-07-01' = {
   name: '${computerName}/Microsoft.Powershell.DSC'
