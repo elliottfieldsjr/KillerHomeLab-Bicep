@@ -57,6 +57,6 @@ jobs:
           SubDNSDomain="${{env.SubDNSDomain}}"
           NetBiosDomain="${{env.NetBiosDomain}}"
           InternalDomain="${{env.InternalDomain}}"
-          InternalTLD="${{env.InternalTLd}}"
+          InternalTLD="${{env.InternalTLD}}"
           artifactsLocation="${{env.artifactsLocation}}"
           artifactsLocationSasToken="${{env.aartifactsLocationSasToken}}"
