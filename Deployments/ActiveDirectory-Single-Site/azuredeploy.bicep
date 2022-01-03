@@ -114,21 +114,17 @@ module deployDC1VM 'linkedtemplates/1nic-2disk-vm.bicep' = {
   ]
 }
 
-resource promotedc1 'Microsoft.Resources/deployments@2021-04-01' = {
-  name: 'promotedc1'
-  location: Location1
-  properties: {
-    mode: 'Incremental'
-    parameters: {
-      computerName: 'khl-dc-01'
-      TimeZone: TimeZone1
-      NetBiosDomain: NetBiosDomain
-      domainName: InternalDomainName
-      adminUsername: adminUsername
-      adminPassword: adminPassword
-      location: Location1      
-    }
-    template: 'linkedtemplates/firstdc.bicep'
+module promotedc1 'linkedtemplates/firstdc.bicep' = {
+  name: 'PromoteDC1'
+  params: {
+    computerName: dc1Name
+    TimeZone: TimeZone1
+    NetBiosDomain: NetBiosDomain
+    domainName: InternalDomainName
+    adminUsername: adminUsername
+    adminPassword: adminPassword
+    location: Location1          
+    artifactsLocation:  deployment().properties.templateLink.uri
   }
   dependsOn: [
     deployDC1VM
