@@ -1,14 +1,17 @@
 @description('Computer Name')
 param computerName string
 
-@description('Time Zone')
-param TimeZone string
-
 @description('NetBios Domain Name')
 param NetBiosDomain string
 
 @description('The FQDN of the AD Domain created ')
-param domainName string
+param InternalDomainName string
+
+@description('The name of Reverse Lookup Zone 1 Network ID')
+param ReverseLookup1 string
+
+@description('DC1 Last IP Octet')
+param dc1lastoctet string
 
 @description('Region of Resources')
 param location string
@@ -27,8 +30,8 @@ param artifactsLocation string
 @secure()
 param artifactsLocationSasToken string
 
-var ModulesURL = uri('${artifactsLocation}', 'DSC/FIRSTDC.zip${artifactsLocationSasToken}')
-var ConfigurationFunction = 'FIRSTDC.ps1\\FIRSTDC'
+var ModulesURL = uri(artifactsLocation, 'DSC/CONFIGDNS.zip${artifactsLocationSasToken}')
+var ConfigurationFunction = 'CONFIGDNS.ps1\\CONFIGDNS'
 
 resource computerName_Microsoft_Powershell_DSC 'Microsoft.Compute/virtualMachines/extensions@2021-07-01' = {
   name: '${computerName}/Microsoft.Powershell.DSC'
@@ -42,9 +45,11 @@ resource computerName_Microsoft_Powershell_DSC 'Microsoft.Compute/virtualMachine
       ModulesUrl: ModulesURL
       ConfigurationFunction: ConfigurationFunction
       Properties: {
-        TimeZone: TimeZone
-        DomainName: domainName
+        computerName: computerName
         NetBiosDomain: NetBiosDomain
+        InternaldomainName: InternalDomainName
+        ReverseLookup1: ReverseLookup1
+        dc1lastoctet: dc1lastoctet
         AdminCreds: {
           UserName: adminUsername
           Password: 'PrivateSettingsRef:AdminPassword'
