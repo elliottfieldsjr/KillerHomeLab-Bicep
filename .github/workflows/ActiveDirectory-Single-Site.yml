@@ -30,7 +30,7 @@ env:
   artifactsLocationSasToken: ""
   
 on: [push]
-name: '${{env.DeploymentName}}'
+name: ActiveDirectory-Single-Site
 jobs:
   Deploy-ActiveDirectory-Site1:
     runs-on: ubuntu-latest
@@ -53,12 +53,12 @@ jobs:
           IF ($RGCheck -eq $Null) {New-AzResourceGroup -Name "${{env.ResourceGroup1Name}}" -Location "${{env.Location1}}"}
         azPSVersion: 3.1.0         
 
-    - name: "${{env.DeploymentName}}"
+    - name: ActiveDirectory-Single-Site
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: "${{env.Subscription1ID}}"
         resourceGroupName: "${{env.ResourceGroupName}}"
-        template: "Deployments/${{env.DeploymentName}}/azuredeploy.bicep"
+        template: Deployments/ActiveDirectory-Single-Site/azuredeploy.bicep
         parameters:
           TimeZone1="${{env.TimeZone1}}"
           AutoShutdownEnabled="${{env.AutoShutdownEnabled}}"
