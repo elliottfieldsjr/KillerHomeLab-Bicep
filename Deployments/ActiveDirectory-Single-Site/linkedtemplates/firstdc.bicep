@@ -27,7 +27,7 @@ param artifactsLocation string
 @secure()
 param artifactsLocationSasToken string
 
-var ModulesURL = uri('${artifactsLocation}', 'DSC/FIRSTDC.zip${artifactsLocationSasToken}')
+var ModulesURL_var = uri('${artifactsLocation}', 'DSC/FIRSTDC.zip${artifactsLocationSasToken}')
 var ConfigurationFunction = 'FIRSTDC.ps1\\FIRSTDC'
 
 resource computerName_Microsoft_Powershell_DSC 'Microsoft.Compute/virtualMachines/extensions@2021-07-01' = {
@@ -39,7 +39,7 @@ resource computerName_Microsoft_Powershell_DSC 'Microsoft.Compute/virtualMachine
     typeHandlerVersion: '2.19'
     autoUpgradeMinorVersion: true
     settings: {
-      ModulesUrl: ModulesURL
+      ModulesUrl: ModulesURL_var
       ConfigurationFunction: ConfigurationFunction
       Properties: {
         TimeZone: TimeZone
