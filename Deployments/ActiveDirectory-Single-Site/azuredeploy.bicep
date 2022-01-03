@@ -121,11 +121,11 @@ resource promotedc1 'Microsoft.Resources/deployments@2021-04-01' = {
     mode: 'Incremental'
     parameters: {
       computerName: 'dc1Name'
-      TimeZone: 'TimeZone1'
-      NetBiosDomain: 'NetBiosDomain'
-      domainName: 'InternalDomainName'
+      TimeZone: TimeZone1
+      NetBiosDomain: NetBiosDomain
+      domainName: InternalDomainName
       adminUsername: adminUsername
-      adminPassword: 'adminPassword'
+      adminPassword: adminPassword
       location: Location1      
     }
     template: 'linkedtemplates/firstdc.bicep'
