@@ -57,6 +57,7 @@ jobs:
       with:
         subscriptionId: "${{env.Subscription1ID}}"
         scope: subscription
+        region: "${{env.Location1}}"
         template: "Deployments/${{env.DeploymentName}}/azuredeploy.bicep"
         parameters:
           ResourceGroup1Name="${{env.ResourceGroup1Name}}"
