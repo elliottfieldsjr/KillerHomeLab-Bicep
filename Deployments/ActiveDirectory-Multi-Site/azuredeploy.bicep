@@ -181,7 +181,7 @@ module VNet2 'modules/vnet.bicep' = {
 
 module BastionHost1 'modules/bastionhost.bicep' = {
   name: 'BastionHost1'
-  scope: RG2    
+  scope: RG1    
   params: {
     publicIPAddressName: '${VNet1Name}-Bastion-pip'
     AllocationMethod: 'Static'
