@@ -3,7 +3,7 @@ env:
   Creds: ${{ secrets.AZURE_MAG_CREDENTIALS }}
   SubscriptionID1: ${{ secrets.AZURE_MAG_SUB1 }}
   ResourceGroup1Name:  "Bicep-GH1"
-  ResourceGrou2Name:  "Bicep-GH2"
+  ResourceGroup2Name:  "Bicep-GH2"
   AzureCloudEnvironment:  "AzureUSGovernment"
   DeploymentName: "ActiveDirectory-Multi-Site"
   TimeZone1:  "Eastern Standard Time"
