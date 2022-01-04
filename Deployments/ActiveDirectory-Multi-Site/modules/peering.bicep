@@ -4,6 +4,9 @@ param SourceVNetName string
 @description('Set the remote VNet name')
 param TargetVNetName string
 
+@description('Set the remote VNet Resource Group')
+param TargetVNetRG string
+
 @description('Boolean value (true or false) without quotes')
 param allowVirtualNetworkAccess bool
 
@@ -16,7 +19,7 @@ param allowGatewayTransit bool
 @description('Boolean value (true or false) without quotes')
 param useRemoteGateways bool
 
-var remoteVNet = resourceId(resourceGroup().name, 'Microsoft.Network/virtualNetworks', TargetVNetName)
+var remoteVNet = resourceId(TargetVNetRG, 'Microsoft.Network/virtualNetworks', TargetVNetName)
 var peeringName_var = '${SourceVNetName}/${SourceVNetName}-to-${TargetVNetName}'
 
 resource peeringName 'Microsoft.Network/virtualNetworks/virtualNetworkPeerings@2021-05-01' = {

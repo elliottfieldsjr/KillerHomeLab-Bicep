@@ -360,6 +360,7 @@ module VNet1ToVNet2Peering 'modules/peering.bicep' = {
   params: {
     SourceVNetName: VNet1Name
     TargetVNetName: VNet2Name
+    TargetVNetRG:ResourceGroup2Name
     allowVirtualNetworkAccess: true
     allowForwardedTraffic: true
     allowGatewayTransit: false
@@ -377,6 +378,7 @@ module VNet2ToVNet1Peering 'modules/peering.bicep' = {
   params: {
     SourceVNetName: VNet2Name
     TargetVNetName: VNet1Name
+    TargetVNetRG: ResourceGroup1Name    
     allowVirtualNetworkAccess: true
     allowForwardedTraffic: true
     allowGatewayTransit: false
