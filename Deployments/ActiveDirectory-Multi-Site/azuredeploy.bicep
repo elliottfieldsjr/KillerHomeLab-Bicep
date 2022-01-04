@@ -367,8 +367,7 @@ module VNet1ToVNet2Peering 'modules/peering.bicep' = {
     useRemoteGateways: false
   }
   dependsOn: [
-    VNet1
-    VNet2
+    createsites
   ]
 }
 
@@ -385,8 +384,7 @@ module VNet2ToVNet1Peering 'modules/peering.bicep' = {
     useRemoteGateways: false
   }
   dependsOn: [
-    VNet1
-    VNet2
+    createsites
   ]
 }
 
@@ -413,7 +411,7 @@ module deployDC2VM 'modules/1nic-2disk-vm.bicep' = {
     location: Location2
   }
   dependsOn: [
-    VNet1
+    createsites
   ]
 }
 
@@ -434,6 +432,8 @@ module promotedc2 'modules/otherdc.bicep' = {
   }
   dependsOn: [
     deployDC2VM
+    VNet1ToVNet2Peering
+    VNet2ToVNet1Peering
   ]
 }
 
