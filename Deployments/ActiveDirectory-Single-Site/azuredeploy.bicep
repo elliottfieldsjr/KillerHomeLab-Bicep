@@ -270,7 +270,7 @@ module deployWK1VM_10 'modules/1nic-1disk-vm.bicep' = if (WK1OSVersion == 'Windo
     licenseType: WindowsClientLicenseType
     VMSize: WK1VMSize
     vnetName: VNet1Name
-    subnetName: VNet1subnet1Name
+    subnetName: VNet1subnet2Name
     adminUsername: adminUsername
     adminPassword: adminPassword
     location: Location1
@@ -295,7 +295,7 @@ module deployWK1VM_7 'modules/1nic-1disk-vm.bicep' = if (WK1OSVersion == 'Window
     licenseType: WindowsClientLicenseType
     VMSize: WK1VMSize
     vnetName: VNet1Name
-    subnetName: VNet1subnet1Name
+    subnetName: VNet1subnet2Name
     adminUsername: adminUsername
     adminPassword: adminPassword
     location: Location1
