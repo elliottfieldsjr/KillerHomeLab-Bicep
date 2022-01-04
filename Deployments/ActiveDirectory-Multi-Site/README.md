@@ -1,11 +1,11 @@
 [![ActiveDirectory-Multi-Site](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/ActiveDirectory-Multi-Site.yml/badge.svg)](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/ActiveDirectory-Multi-Site.yml)
 
-# Active Directory Single-Site
+# Active Directory Multi-Site
 <img src="../x_Images/ActiveDirectoryMultiSite.png" alt="Active Directory" width="150">
 
 This Templates deploys a Single Forest/Domain:
 
-- 1 - Active Directory Forest/Domain
+- 1 - Active Directory Forest/Domain/Multi-Site
 - 2 - Domain Controllers
 - 2 - Domain Joined Windows Workstations (Windows 11/10/7)
 
