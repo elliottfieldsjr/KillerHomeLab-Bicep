@@ -1,13 +1,13 @@
-[![ActiveDirectory-Single-Site](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/ActiveDirectory-Single-Site.yml/badge.svg)](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/ActiveDirectory-Single-Site.yml)
+[![ActiveDirectory-Multi-Site](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/ActiveDirectory-Multi-Site.yml/badge.svg)](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/ActiveDirectory-Multi-Site.yml)
 
 # Active Directory Single-Site
-<img src="../x_Images/ActiveDirectorySingleSite.png" alt="Active Directory" width="150">
+<img src="../x_Images/ActiveDirectoryMultiSite.png" alt="Active Directory" width="150">
 
 This Templates deploys a Single Forest/Domain:
 
 - 1 - Active Directory Forest/Domain
-- 1 - Domain Controller
-- 1 - Domain Joined Windows Workstation (Windows 11/10/7)
+- 2 - Domain Controllers
+- 2 - Domain Joined Windows Workstations (Windows 11/10/7)
 
 The deployment leverages Desired State Configuration scripts to further customize the following:
 
@@ -36,6 +36,7 @@ AD OU Structure:
 
 Parameters that support changes
 - TimeZone1.  Select an appropriate Time Zone.
+- TimeZone2.  Select an appropriate Time Zone.
 - AutoShutdownEnabled.  Yes = AutoShutdown Enabled, No = AutoShutdown Disabled.
 - AutoShutdownTime.  24-Hour Clock Time for Auto-Shutdown (Example: 1900 = 7PM)
 - AutoShutdownEmail.  Auto-Shutdown notification Email (Example:  user@domain.com)
@@ -50,8 +51,14 @@ Parameters that support changes
 - Internal Domain.  Enter a valid Internal Domain (Exmaple:  killerhomelab)
 - InternalTLD.  Select a valid Top-Level Domain using the Pull-Down Menu.
 - Vnet1ID.  Enter first 2 octets of your desired Address Space for Virtual Network 1 (Example:  10.1)
+- Vnet2ID.  Enter first 2 octets of your desired Address Space for Virtual Network 2 (Example:  10.2)
 - Reverse Lookup1.  Enter first 2 octets of your desired Address Space in Reverse (Example:  1.10)
+- Reverse Lookup2.  Enter first 2 octets of your desired Address Space in Reverse (Example:  2.10)
 - DC1OSVersion.  Select 2022-Datacenter (Windows 2022), 2019-Datacenter (Windows 2019), 2016-Datacenter (Windows 2016) or 2012-R2-Datacenter (Windows 2012 R2) Domain Controller 1 OS Version
+- DC2OSVersion.  Select 2022-Datacenter (Windows 2022), 2019-Datacenter (Windows 2019), 2016-Datacenter (Windows 2016) or 2012-R2-Datacenter (Windows 2012 R2) Domain Controller 1 OS Version
 - WK1OSVersion.  Select Windows-11, Windows-10 or Windows-7 Worksation 1 OS Version
+- WK2OSVersion.  Select Windows-11, Windows-10 or Windows-7 Worksation 1 OS Version
 - DC1VMSize.  Enter a Valid VM Size based on which Region the VM is deployed.
+- DC2VMSize.  Enter a Valid VM Size based on which Region the VM is deployed.
 - WK1VMSize.  Enter a Valid VM Size based on which Region the VM is deployed.
+- WK2VMSize.  Enter a Valid VM Size based on which Region the VM is deployed.
