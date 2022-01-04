@@ -96,11 +96,11 @@ param Location1 string
 param Location2 string
 
 @description('The location of resources, such as templates and DSC modules, that the template depends on')
-param artifactsLocation string = deployment().properties.templateLink.uri
+param artifactsLocation string
 
 @description('Auto-generated token to access _artifactsLocation')
 @secure()
-param artifactsLocationSasToken string = ''
+param artifactsLocationSasToken string
 
 var dc1lastoctet = '101'
 var dc2lastoctet = '101'
