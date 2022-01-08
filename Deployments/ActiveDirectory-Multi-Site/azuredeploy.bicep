@@ -347,7 +347,7 @@ module createsites 'modules/createsites.bicep' = {
     Site2Prefix: VNet2Prefix
     artifactsLocation: artifactsLocation
     artifactsLocationSasToken: artifactsLocationSasToken
-    location: Location2
+    location: Location1
   }
   dependsOn: [
     createous
