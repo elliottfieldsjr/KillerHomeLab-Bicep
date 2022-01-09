@@ -120,7 +120,7 @@ jobs:
           WK2OSVersion="${{env.WK2OSVersion}}"                    
           DC2VMSize="${{env.DC2VMSize}}"                    
           WK2VMSize="${{env.WK2VMSize}}"                              
-          Location1="${{env.Location2}}"  
+          Location1="${{env.Location1}}"  
           Location2="${{env.Location2}}"  
           artifactsLocation="${{env.artifactsLocation}}/${{env.DeploymentName}}/"
           artifactsLocationSasToken="${{env.artifactsLocationSasToken}}"                            

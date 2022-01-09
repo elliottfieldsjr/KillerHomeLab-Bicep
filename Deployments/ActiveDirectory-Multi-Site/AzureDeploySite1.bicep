@@ -106,6 +106,7 @@ var VNet2subnet2Prefix = '${VNet2ID}.2.0/24'
 var VNet2BastionsubnetPrefix = '${VNet2ID}.253.0/24'
 var dc1Name = '${NamingConvention}-dc-01'
 var dc1IP = '${VNet1ID}.1.${dc1lastoctet}'
+var dc2Name = '${NamingConvention}-dc-02'
 var wk1Name = '${NamingConvention}-wk-01'
 var wk1IP = '${VNet1ID}.2.${wk1lastoctet}'
 var DCDataDisk1Name = 'NTDS'
@@ -281,7 +282,7 @@ module configdns 'modules/configdnsint.bicep' = {
   scope: RG1            
   params: {
     computerName: dc1Name
-    DC2Name: dc1Name    
+    DC2Name: dc2Name    
     NetBiosDomain: NetBiosDomain
     InternalDomainName: InternalDomainName
     ReverseLookup1: ReverseZone1
