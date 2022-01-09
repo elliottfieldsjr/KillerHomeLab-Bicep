@@ -63,6 +63,7 @@ jobs:
         template: "Deployments/${{env.DeploymentName}}/AzureDeploySite1.bicep"
         parameters:
           ResourceGroup1Name="${{env.ResourceGroup1Name}}"
+          ResourceGroup2Name="${{env.ResourceGroup2Name}}"          
           TimeZone1="${{env.TimeZone1}}"
           AutoShutdownEnabled="${{env.AutoShutdownEnabled}}"
           AutoShutdownTime="${{env.AutoShutdownTime}}"
@@ -78,12 +79,15 @@ jobs:
           InternalDomain="${{env.InternalDomain}}"
           InternalTLD="${{env.InternalTLD}}"          
           VNet1ID="${{env.VNet1ID}}"
+          VNet2ID="${{env.VNet2ID}}"          
           DC1OSVersion="${{env.DC1OSVersion}}"
           WK1OSVersion="${{env.WK1OSVersion}}"          
           DC1VMSize="${{env.DC1VMSize}}"          
           WK1VMSize="${{env.WK1VMSize}}"                    
           ReverseLookup1="${{env.ReverseLookup1}}"          
+          ReverseLookup2="${{env.ReverseLookup2}}"                    
           Location1="${{env.Location1}}"
+          Location2="${{env.Location2}}"          
           artifactsLocation="${{env.artifactsLocation}}/${{env.DeploymentName}}/"
           artifactsLocationSasToken="${{env.artifactsLocationSasToken}}"                 
 
