@@ -100,6 +100,7 @@ jobs:
         template: "Deployments/${{env.DeploymentName}}/AzureDeploySite2.bicep"
         parameters:
           ResourceGroup2Name="${{env.ResourceGroup2Name}}"
+          ResourceGroup2Name="${{env.ResourceGroup2Name}}"
           TimeZone2="${{env.TimeZone2}}"          
           AutoShutdownEnabled="${{env.AutoShutdownEnabled}}"
           AutoShutdownTime="${{env.AutoShutdownTime}}"
@@ -119,7 +120,7 @@ jobs:
           WK2OSVersion="${{env.WK2OSVersion}}"                    
           DC2VMSize="${{env.DC2VMSize}}"                    
           WK2VMSize="${{env.WK2VMSize}}"                              
-          ReverseLookup2="${{env.ReverseLookup2}}"                    
+          Location1="${{env.Location2}}"  
           Location2="${{env.Location2}}"  
           artifactsLocation="${{env.artifactsLocation}}/${{env.DeploymentName}}/"
           artifactsLocationSasToken="${{env.artifactsLocationSasToken}}"                            
