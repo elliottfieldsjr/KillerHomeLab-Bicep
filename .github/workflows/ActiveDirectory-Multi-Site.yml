@@ -7,7 +7,7 @@ env:
   AzureCloudEnvironment:  "AzureUSGovernment"
   DeploymentName: "ActiveDirectory-Multi-Site"
   TimeZone1:  "Eastern Standard Time"
-  TimeZone2:  "Pacific Standard Time"
+  TimeZone2:  "Eastern Standard Time"
   AutoShutdownEnabled:  "Yes"
   AutoShutdownTime: "2000"
   AutoShutdownEmail: "somename@domain.com"
@@ -34,7 +34,7 @@ env:
   WK1VMSize:  "Standard_D2s_v3"    
   WK2VMSize:  "Standard_D2s_v3"      
   Location1: "USGovVirginia"
-  Location2: "USGovArizona"  
+  Location2: "USGovTexas"  
   artifactsLocation: "https://raw.githubusercontent.com/elliottfieldsjr/KillerHomeLab-Bicep/main/Deployments"
   artifactsLocationSasToken: ""  
   
