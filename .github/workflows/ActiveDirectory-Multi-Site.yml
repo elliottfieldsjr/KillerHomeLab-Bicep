@@ -1,7 +1,7 @@
 
 env:
-  Creds: ${{ secrets.AZURE_MAG_CREDENTIALS }}
-  SubscriptionID1: ${{ secrets.AZURE_MAG_SUB1 }}
+  Creds: ${{ secrets.AZURE_MAG2_CREDENTIALS }}
+  SubscriptionID1: ${{ secrets.AZURE_MAG_SUB2 }}
   ResourceGroup1Name:  "Bicep-GH1"
   ResourceGroup2Name:  "Bicep-GH2"
   AzureCloudEnvironment:  "AzureUSGovernment"
