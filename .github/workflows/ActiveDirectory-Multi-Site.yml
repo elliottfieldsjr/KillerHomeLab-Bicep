@@ -99,7 +99,7 @@ jobs:
         region: "${{env.Location2}}"
         template: "Deployments/${{env.DeploymentName}}/AzureDeploySite2.bicep"
         parameters:
-          ResourceGroup2Name="${{env.ResourceGroup2Name}}"
+          ResourceGroup1Name="${{env.ResourceGroup1Name}}"
           ResourceGroup2Name="${{env.ResourceGroup2Name}}"
           TimeZone2="${{env.TimeZone2}}"          
           AutoShutdownEnabled="${{env.AutoShutdownEnabled}}"
