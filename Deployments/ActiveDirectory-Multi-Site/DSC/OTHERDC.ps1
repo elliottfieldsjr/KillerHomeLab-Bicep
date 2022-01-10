@@ -73,13 +73,6 @@
             DependsOn="[WindowsFeature]ADDSInstall"
         }
 
-        WaitForADDomain DscForestWait
-        {
-            DomainName = $DomainName
-            Credential= $DomainCreds
-            DependsOn = '[xDNSServerAddress]DnsServerAddress'
-        }
-
         ADDomainController BDC
         {
             DomainName = $DomainName
@@ -88,7 +81,7 @@
             DatabasePath = "N:\NTDS"
             LogPath = "N:\NTDS"
             SysvolPath = "N:\SYSVOL"
-            DependsOn = "[WaitForADDomain]DscForestWait"
+            DependsOn = '[xDNSServerAddress]DnsServerAddress'
         }
 
         TimeZone SetTimeZone
