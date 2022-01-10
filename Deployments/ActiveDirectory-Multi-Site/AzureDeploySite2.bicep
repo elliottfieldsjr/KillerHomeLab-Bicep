@@ -51,6 +51,9 @@ param InternalDomain string
 param InternalTLD string
 
 @description('Virtual Network 2 Prefix')
+param VNet1ID string
+
+@description('Virtual Network 2 Prefix')
 param VNet2ID string
 
 @description('Domain Controller2 OS Version')
@@ -78,6 +81,7 @@ param artifactsLocation string
 @secure()
 param artifactsLocationSasToken string
 
+var dc1lastoctet = '101'
 var dc2lastoctet = '101'
 var wk2lastoctet = '100'
 var VNet2Name = '${NamingConvention}-VNet2'
@@ -88,6 +92,7 @@ var VNet2subnet2Name = '${NamingConvention}-VNet2-Subnet2'
 var VNet2subnet2Prefix = '${VNet2ID}.2.0/24'
 var VNet2BastionsubnetPrefix = '${VNet2ID}.253.0/24'
 var dc2Name = '${NamingConvention}-dc-02'
+var dc1IP = '${VNet1ID}.1.${dc1lastoctet}'
 var dc2IP = '${VNet2ID}.1.${dc2lastoctet}'
 var wk1Name = '${NamingConvention}-wk-01'
 var wk2Name = '${NamingConvention}-wk-02'
@@ -141,7 +146,7 @@ module promotedc2 'modules/otherdc.bicep' = {
     TimeZone: TimeZone2
     NetBiosDomain: NetBiosDomain
     domainName: InternalDomainName
-    DnsServerIP: dc2IP
+    DnsServerIP: dc1IP
     adminUsername: adminUsername
     adminPassword: adminPassword
     artifactsLocation: artifactsLocation

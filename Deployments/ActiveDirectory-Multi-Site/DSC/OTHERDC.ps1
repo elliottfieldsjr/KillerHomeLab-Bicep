@@ -19,7 +19,7 @@
     Import-DscResource -ModuleName xPendingReboot
     Import-DscResource -ModuleName DNSServerDsc
 
-    [System.Management.Automation.PSCredential ]$DomainCreds = New-Object System.Management.Automation.PSCredential ("$($Admincreds.UserName)@${DomainName}", $Admincreds.Password)
+    [System.Management.Automation.PSCredential ]$DomainCreds = New-Object System.Management.Automation.PSCredential ("${NetBiosDomain}\$($Admincreds.UserName)", $Admincreds.Password)
 
     $Interface=Get-NetAdapter|Where Name -Like "Ethernet*"|Select-Object -First 1
     $InterfaceAlias=$($Interface.Name)
@@ -73,6 +73,15 @@
             DependsOn="[WindowsFeature]ADDSInstall"
         }
 
+        WaitForADDomain DscForestWait
+        {
+            DomainName = $DomainName
+            Credential= $DomainCreds
+            RestartCount = $RetryCount
+            WaitTimeout = $RetryIntervalSec
+            DependsOn = '[xDNSServerAddress]DnsServerAddress'
+        }
+
         ADDomainController BDC
         {
             DomainName = $DomainName
@@ -81,7 +90,7 @@
             DatabasePath = "N:\NTDS"
             LogPath = "N:\NTDS"
             SysvolPath = "N:\SYSVOL"
-            DependsOn = '[xDNSServerAddress]DnsServerAddress'
+            DependsOn = "[WaitForADDomain]DscForestWait"
         }
 
         TimeZone SetTimeZone

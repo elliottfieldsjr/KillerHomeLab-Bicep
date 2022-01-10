@@ -115,6 +115,7 @@ jobs:
           NetBiosDomain="${{env.NetBiosDomain}}"
           InternalDomain="${{env.InternalDomain}}"
           InternalTLD="${{env.InternalTLD}}"          
+          VNet1ID="${{env.VNet1ID}}"          
           VNet2ID="${{env.VNet2ID}}"          
           DC2OSVersion="${{env.DC2OSVersion}}"          
           WK2OSVersion="${{env.WK2OSVersion}}"                    
