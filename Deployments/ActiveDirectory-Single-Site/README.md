@@ -5,7 +5,7 @@
 
 This Templates deploys a Single Forest/Domain:
 
-- 1 - Active Directory Forest/Domain
+- 1 - Active Directory Forest/Domain/Multi-Site
 - 1 - Domain Controller
 - 1 - Domain Joined Windows Workstation (Windows 11/10/7)
 
