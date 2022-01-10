@@ -39,7 +39,7 @@ env:
   artifactsLocationSasToken: ""  
   
 on: [push]
-name: Deployment
+name: ActiveDirectory-Multi-Site
 jobs:
   Deploy-Resources:
     runs-on: ubuntu-latest
@@ -54,17 +54,18 @@ jobs:
         creds: "${{env.Creds}}"
         environment: "${{env.AzureCloudEnvironment}}"
 
-    - name: Site1
+    - name: Job1
       uses: azure/arm-deploy@v1
       with:
         subscriptionId: "${{env.Subscription1ID}}"
         scope: subscription
         region: "${{env.Location1}}"
-        template: "Deployments/${{env.DeploymentName}}/AzureDeploySite1.bicep"
+        template: "Deployments/${{env.DeploymentName}}/azuredeploy.bicep"
         parameters:
           ResourceGroup1Name="${{env.ResourceGroup1Name}}"
           ResourceGroup2Name="${{env.ResourceGroup2Name}}"          
           TimeZone1="${{env.TimeZone1}}"
+          TimeZone2="${{env.TimeZone2}}"          
           AutoShutdownEnabled="${{env.AutoShutdownEnabled}}"
           AutoShutdownTime="${{env.AutoShutdownTime}}"
           AutoShutdownEmail="${{env.AutoShutdownEmail}}"          
@@ -81,47 +82,16 @@ jobs:
           VNet1ID="${{env.VNet1ID}}"
           VNet2ID="${{env.VNet2ID}}"          
           DC1OSVersion="${{env.DC1OSVersion}}"
+          DC2OSVersion="${{env.DC2OSVersion}}"          
           WK1OSVersion="${{env.WK1OSVersion}}"          
+          WK2OSVersion="${{env.WK2OSVersion}}"                    
           DC1VMSize="${{env.DC1VMSize}}"          
+          DC2VMSize="${{env.DC2VMSize}}"                    
           WK1VMSize="${{env.WK1VMSize}}"                    
+          WK2VMSize="${{env.WK2VMSize}}"                              
           ReverseLookup1="${{env.ReverseLookup1}}"          
           ReverseLookup2="${{env.ReverseLookup2}}"                    
           Location1="${{env.Location1}}"
           Location2="${{env.Location2}}"          
           artifactsLocation="${{env.artifactsLocation}}/${{env.DeploymentName}}/"
           artifactsLocationSasToken="${{env.artifactsLocationSasToken}}"                 
-
-    - name: Site2
-      uses: azure/arm-deploy@v1
-      with:
-        subscriptionId: "${{env.Subscription1ID}}"
-        scope: subscription
-        region: "${{env.Location2}}"
-        template: "Deployments/${{env.DeploymentName}}/AzureDeploySite2.bicep"
-        parameters:
-          ResourceGroup1Name="${{env.ResourceGroup1Name}}"
-          ResourceGroup2Name="${{env.ResourceGroup2Name}}"
-          TimeZone2="${{env.TimeZone2}}"          
-          AutoShutdownEnabled="${{env.AutoShutdownEnabled}}"
-          AutoShutdownTime="${{env.AutoShutdownTime}}"
-          AutoShutdownEmail="${{env.AutoShutdownEmail}}"          
-          adminUsername="${{env.adminUsername}}"
-          adminPassword="${{env.adminPassword}}"
-          WindowsServerLicenseType="${{env.WindowsServerLicenseType}}"
-          WindowsClientLicenseType="${{env.WindowsClientLicenseType}}"          
-          NamingConvention="${{env.NamingConvention}}"
-          SubDNSDomain="${{env.SubDNSDomain}}"
-          SubDNSBaseDN="${{env.SubDNSBaseDN}}"                    
-          NetBiosDomain="${{env.NetBiosDomain}}"
-          InternalDomain="${{env.InternalDomain}}"
-          InternalTLD="${{env.InternalTLD}}"          
-          VNet1ID="${{env.VNet1ID}}"          
-          VNet2ID="${{env.VNet2ID}}"          
-          DC2OSVersion="${{env.DC2OSVersion}}"          
-          WK2OSVersion="${{env.WK2OSVersion}}"                    
-          DC2VMSize="${{env.DC2VMSize}}"                    
-          WK2VMSize="${{env.WK2VMSize}}"                              
-          Location1="${{env.Location1}}"  
-          Location2="${{env.Location2}}"  
-          artifactsLocation="${{env.artifactsLocation}}/${{env.DeploymentName}}/"
-          artifactsLocationSasToken="${{env.artifactsLocationSasToken}}"                            

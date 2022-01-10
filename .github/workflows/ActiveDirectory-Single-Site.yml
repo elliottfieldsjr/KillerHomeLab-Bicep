@@ -30,7 +30,7 @@ env:
   artifactsLocationSasToken: ""
   
 on: [push]
-name: Deployment
+name: ActiveDirectory-Single-Site
 jobs:
   Deploy-Resources:
     runs-on: ubuntu-latest
