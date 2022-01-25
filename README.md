@@ -10,4 +10,4 @@
 
 # Azure Network Watcher Connection Monitor
 [![ActiveDirectory-Multi-Site](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/AzureNetworkWatcher-Connection-Monitor.yml/badge.svg)](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/AzureNetworkWatcher-Connection-Monitor.yml)
-<a href="./Deployments/AzureNetworkWatcher-Connection-Monitor"><img src="Deployments/x_Images/NetworkWatcherConnectionMonitor.png" alt="Azure Network Watcher Connection Monitor" width="150"></a>
+<a href="./Deployments/AzureNetworkWatcher-Connection-Monitor"><img src="Deployments/x_Images/NetworkWatcherConnectionMonitor.png" alt="Network Watcher Connection Monitor" width="150"></a>
