@@ -1,6 +1,6 @@
 
 env:
-  Creds: ${{ secrets.AZURE_MAG1_CREDENTIALS }}
+  Creds: ${{ secrets.AZURE_MAG_CREDENTIALS }}
   SubscriptionID1: ${{ secrets.AZURE_MAG_SUB1 }}
   ResourceGroup1Name:  "NW-ConnectionMonitor-11"
   ResourceGroup2Name:  "NW-ConnectionMonitor-22"
