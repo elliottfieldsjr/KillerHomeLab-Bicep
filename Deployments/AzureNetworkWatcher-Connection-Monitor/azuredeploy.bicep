@@ -265,9 +265,9 @@ module deployVNet2VM 'modules/1nic-1disk-vm.bicep' = {
 
 module InstallIIS 'modules/iis.bicep' = {
   name: 'InstallIIS'
-  scope: RG1      
+  scope: RG2    
   params: {
-    computerName: vm1Name
+    computerName: vm2Name
     artifactsLocation: artifactsLocation
     artifactsLocationSasToken: artifactsLocationSasToken
     location: Location2
