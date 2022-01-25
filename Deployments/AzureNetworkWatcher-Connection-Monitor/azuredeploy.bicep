@@ -385,7 +385,7 @@ module DeployConnectionMonitor 'modules/connectionmonitor.bicep' = {
     SourceVMIP: vm1IP
     DestinationVMName: vm2Name
     DestinationVMIP: vm2IP
-    location: Location2
+    location: Location1
   }
   dependsOn: [
     DeployLogAnalyticsWorkspace
