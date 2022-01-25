@@ -5,7 +5,7 @@ env:
   ResourceGroup1Name:  "NW-ConnectionMonitor-11"
   ResourceGroup2Name:  "NW-ConnectionMonitor-22"
   AzureCloudEnvironment:  "AzureUSGovernment"
-  DeploymentName: "AzureNetworkWatcher-ConnectionMonitor"
+  DeploymentName: "AzureNetworkWatcher-Connection-Monitor"
   TimeZone1:  "Eastern Standard Time"
   TimeZone2:  "Eastern Standard Time"
   AutoShutdownEnabled:  "Yes"
@@ -28,7 +28,7 @@ env:
   artifactsLocationSasToken: ""  
   
 on: [push]
-name: AzureNetworkWatcher-ConnectionMonitor
+name: AzureNetworkWatcher-Connection-Monitor
 jobs:
   Deploy-Resources:
     runs-on: ubuntu-latest
