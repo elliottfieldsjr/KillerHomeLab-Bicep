@@ -14,7 +14,6 @@ env:
   adminUsername:  ${{ secrets.adminUsername }}
   adminPassword:  ${{ secrets.adminPassword }}  
   WindowsServerLicenseType: 'Windows_Server'
-  WindowsClientLicenseType: 'Windows_Client'
   NamingConvention: "khl"
   VNet1ID:  "10.1"
   VNet2ID:  "10.2"  
@@ -61,7 +60,6 @@ jobs:
           adminUsername="${{env.adminUsername}}"
           adminPassword="${{env.adminPassword}}"
           WindowsServerLicenseType="${{env.WindowsServerLicenseType}}"
-          WindowsClientLicenseType="${{env.WindowsClientLicenseType}}"          
           NamingConvention="${{env.NamingConvention}}"
           VNet1ID="${{env.VNet1ID}}"
           VNet2ID="${{env.VNet2ID}}"          
