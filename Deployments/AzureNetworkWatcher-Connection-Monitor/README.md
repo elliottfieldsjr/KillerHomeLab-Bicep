@@ -3,6 +3,8 @@
 # Active Directory Multi-Site
 <img src="../x_Images/NetworkWatcherConnectionMonitor.png" alt="Active Directory" width="150">
 
+!!!NOTE:  The Account running this deployment requires OWNER Permissions to the Subscription in order to create Role Assignments on the Resource Groups Deployed
+
 This Template deploys a the following:
 
 - 1 - Log Analytics Workspace
