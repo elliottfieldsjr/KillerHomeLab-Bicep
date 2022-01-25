@@ -1,0 +1,75 @@
+
+env:
+  Creds: ${{ secrets.AZURE_MAG1_CREDENTIALS }}
+  SubscriptionID1: ${{ secrets.AZURE_MAG_SUB1 }}
+  ResourceGroup1Name:  "NW-ConnectionMonitor-11"
+  ResourceGroup2Name:  "NW-ConnectionMonitor-22"
+  AzureCloudEnvironment:  "AzureUSGovernment"
+  DeploymentName: "AzureNetworkWatcher-ConnectionMonitor"
+  TimeZone1:  "Eastern Standard Time"
+  TimeZone2:  "Eastern Standard Time"
+  AutoShutdownEnabled:  "Yes"
+  AutoShutdownTime: "2000"
+  AutoShutdownEmail: "somename@domain.com"
+  adminUsername:  ${{ secrets.adminUsername }}
+  adminPassword:  ${{ secrets.adminPassword }}  
+  WindowsServerLicenseType: 'Windows_Server'
+  WindowsClientLicenseType: 'Windows_Client'
+  NamingConvention: "khl"
+  VNet1ID:  "10.1"
+  VNet2ID:  "10.2"  
+  VM1OSVersion: "2019-Datacenter"
+  VM2OSVersion: "2019-Datacenter"  
+  VM1VMSize:  "Standard_D2s_v3"  
+  VM2VMSize:  "Standard_D2s_v3"    
+  Location1: "USGovVirginia"
+  Location2: "USGovTexas"  
+  artifactsLocation: "https://raw.githubusercontent.com/elliottfieldsjr/KillerHomeLab-Bicep/main/Deployments"
+  artifactsLocationSasToken: ""  
+  
+on: [push]
+name: AzureNetworkWatcher-ConnectionMonitor
+jobs:
+  Deploy-Resources:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout code
+    - uses: actions/checkout@main
+
+      # Log into Azure
+    - uses: azure/login@v1
+      with:
+        creds: "${{env.Creds}}"
+        environment: "${{env.AzureCloudEnvironment}}"
+
+    - name: Job1
+      uses: azure/arm-deploy@v1
+      with:
+        subscriptionId: "${{env.Subscription1ID}}"
+        scope: subscription
+        region: "${{env.Location1}}"
+        template: "Deployments/${{env.DeploymentName}}/azuredeploy.bicep"
+        parameters:
+          ResourceGroup1Name="${{env.ResourceGroup1Name}}"
+          ResourceGroup2Name="${{env.ResourceGroup2Name}}"          
+          TimeZone1="${{env.TimeZone1}}"
+          TimeZone2="${{env.TimeZone2}}"          
+          AutoShutdownEnabled="${{env.AutoShutdownEnabled}}"
+          AutoShutdownTime="${{env.AutoShutdownTime}}"
+          AutoShutdownEmail="${{env.AutoShutdownEmail}}"          
+          adminUsername="${{env.adminUsername}}"
+          adminPassword="${{env.adminPassword}}"
+          WindowsServerLicenseType="${{env.WindowsServerLicenseType}}"
+          WindowsClientLicenseType="${{env.WindowsClientLicenseType}}"          
+          NamingConvention="${{env.NamingConvention}}"
+          VNet1ID="${{env.VNet1ID}}"
+          VNet2ID="${{env.VNet2ID}}"          
+          VM1OSVersion="${{env.VM1OSVersion}}"
+          VM2OSVersion="${{env.VM2OSVersion}}"          
+          VM1VMSize="${{env.VM1VMSize}}"          
+          VM2VMSize="${{env.VM2VMSize}}"                     
+          Location1="${{env.Location1}}"
+          Location2="${{env.Location2}}"          
+          artifactsLocation="${{env.artifactsLocation}}/${{env.DeploymentName}}/"
+          artifactsLocationSasToken="${{env.artifactsLocationSasToken}}"                 

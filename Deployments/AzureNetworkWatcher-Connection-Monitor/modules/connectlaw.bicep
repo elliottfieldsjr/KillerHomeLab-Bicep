@@ -35,7 +35,7 @@ resource ConnectToWorkspace 'Microsoft.Resources/deploymentScripts@2020-10-01' =
   identity: {
     type: 'UserAssigned'
     userAssignedIdentities: {
-      '${resourceId('Microsoft.ManagedIdentity/userAssignedIdentities', ManagedIDName)}': {}
+      '${resourceId(WorkspaceResourceGroup,  'Microsoft.ManagedIdentity/userAssignedIdentities', ManagedIDName)}': {}
     }
   }
   properties: {

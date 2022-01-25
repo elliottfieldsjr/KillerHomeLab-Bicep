@@ -59,12 +59,6 @@ param Location1 string
 @description('Location 2 for Resources')
 param Location2 string
 
-@description('Role Assignment Guid for RG 1')
-param roleAssignmentGuid1 string = newGuid()
-
-@description('Role Assignment Guid for RG 2')
-param roleAssignmentGuid2 string = newGuid()
-
 @description('The location of resources, such as templates and DSC modules, that the template depends on')
 param artifactsLocation string
 
@@ -311,7 +305,7 @@ module AssignManagedIDRG1 'modules/roleassignment.bicep' = {
   params: {
     PrincipalID: reference('CreateManagedID').outputs.manageduseridentity.value
     RoleDefinitionID: Contributor  
-    roleAssignmentGuid: roleAssignmentGuid1
+    roleAssignmentHash: 'NetworkWatcher1'
   }
   dependsOn: [
     CreateManagedID
@@ -324,7 +318,7 @@ module AssignManagedIDRG2 'modules/roleassignment.bicep' = {
   params: {
     PrincipalID: reference('CreateManagedID').outputs.manageduseridentity.value
     RoleDefinitionID: Contributor  
-    roleAssignmentGuid: roleAssignmentGuid2
+    roleAssignmentHash: 'NetworkWatcher2'
   }
   dependsOn: [
     CreateManagedID

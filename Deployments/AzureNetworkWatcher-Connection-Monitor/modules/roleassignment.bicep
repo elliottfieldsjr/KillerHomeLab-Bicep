@@ -5,10 +5,10 @@ param PrincipalID string
 param RoleDefinitionID string
 
 @description('A new GUID used to identify the role assignment')
-param roleAssignmentGuid string
+param roleAssignmentHash string
 
 resource roleAssignmentGuid_resource 'Microsoft.Authorization/roleAssignments@2020-04-01-preview' = {
-  name: roleAssignmentGuid
+  name: guid(resourceGroup().id, roleAssignmentHash)
   scope: resourceGroup()
   properties: {
     roleDefinitionId: RoleDefinitionID
