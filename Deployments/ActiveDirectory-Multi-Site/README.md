@@ -1,7 +1,7 @@
 [![ActiveDirectory-Multi-Site](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/ActiveDirectory-Multi-Site.yml/badge.svg)](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/ActiveDirectory-Multi-Site.yml)
 
 # Active Directory Multi-Site
-<img src="../x_Images/ActiveDirectoryMultiSite.png" alt="Active Directory" width="150">
+<img src="../x_Images/ActiveDirectoryMultiSite.png" alt="Active Directory Multi-Site" width="150">
 
 This Templates deploys a Single Forest/Domain:
 
