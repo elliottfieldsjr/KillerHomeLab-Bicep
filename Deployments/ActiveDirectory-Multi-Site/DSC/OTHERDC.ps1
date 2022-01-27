@@ -83,21 +83,13 @@
             DependsOn = "[WindowsFeature]ADDSTools"
         }
 
-        xDnsServerAddress DnsServerAddress
-        {
-            Address        = $DNSServerIP
-            InterfaceAlias = $InterfaceAlias
-            AddressFamily  = 'IPv4'
-            DependsOn="[WindowsFeature]ADDSInstall"
-        }
-
         WaitForADDomain DscForestWait
         {
             DomainName = $DomainName
             Credential= $DomainCredsFQDN
             RestartCount = $RetryCount
             WaitTimeout = $RetryIntervalSec
-            DependsOn = '[xDNSServerAddress]DnsServerAddress'
+            DependsOn = '[WindowsFeature]ADAdminCenter'
         }
 
         ADDomainController BDC
@@ -126,7 +118,7 @@
             }
             GetScript =  { @{} }
             TestScript = { $false}
-            DependsOn = '[xDNSServerAddress]DnsServerAddress'
+            DependsOn = '[ADDomainController]BDC'
         }
 
         xPendingReboot RebootAfterPromotion {
