@@ -26,22 +26,15 @@
 
     Node localhost
     {
-        Registry SchUseStrongCrypto
+        Script EnableTls12
         {
-            Key                         = 'HKLM:\SOFTWARE\Microsoft\.NETFramework\v4.0.30319'
-            ValueName                   = 'SchUseStrongCrypto'
-            ValueType                   = 'Dword'
-            ValueData                   =  '1'
-            Ensure                      = 'Present'
-        }
+            SetScript =
+            {
+                [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
-        Registry SchUseStrongCrypto64
-        {
-            Key                         = 'HKLM:\SOFTWARE\Wow6432Node\Microsoft\.NETFramework\v4.0.30319'
-            ValueName                   = 'SchUseStrongCrypto'
-            ValueType                   = 'Dword'
-            ValueData                   =  '1'
-            Ensure                      = 'Present'
+            }
+            GetScript =  { @{} }
+            TestScript = { $false}
         }
 
         LocalConfigurationManager
