@@ -2,8 +2,8 @@
 env:
   Creds: ${{ secrets.AZURE_MAG2_CREDENTIALS }}
   SubscriptionID1: ${{ secrets.AZURE_MAG_SUB2 }}
-  ResourceGroup1Name:  "Multi-Site-GH1"
-  ResourceGroup2Name:  "Multi-Site-GH2"
+  ResourceGroup1Name:  "Multi-Site-GH21"
+  ResourceGroup2Name:  "Multi-Site-GH22"
   AzureCloudEnvironment:  "AzureUSGovernment"
   DeploymentName: "ActiveDirectory-Multi-Site"
   TimeZone1:  "Eastern Standard Time"

@@ -14,6 +14,7 @@
     Import-DscResource -ModuleName xStorage
     Import-DscResource -ModuleName xNetworking
     Import-DscResource -ModuleName xPSDesiredStateConfiguration
+    Import-DscResource -ModuleName PSDesiredStateConfiguration
     Import-DscResource -ModuleName ComputerManagementDsc
     Import-DscResource -ModuleName ActiveDirectoryDsc
     Import-DscResource -ModuleName xPendingReboot
@@ -37,11 +38,6 @@
             TestScript = { $false}
         }
 
-        LocalConfigurationManager
-        {
-            RebootNodeIfNeeded = $true
-        }
-
         xWaitforDisk Disk2
         {
                 DiskId = 2
@@ -62,11 +58,19 @@
             Name = "AD-Domain-Services"
         }
 
+        WindowsFeature 'RSATADPowerShell'
+        {
+            Ensure    = 'Present'
+            Name      = 'RSAT-AD-PowerShell'
+
+            DependsOn = '[WindowsFeature]ADDSInstall'
+        }
+
         WindowsFeature ADDSTools
         {
             Ensure = "Present"
             Name = "RSAT-ADDS-Tools"
-            DependsOn = "[WindowsFeature]ADDSInstall"
+            DependsOn = '[WindowsFeature]ADDSInstall'
         }
 
         WindowsFeature ADAdminCenter
@@ -80,8 +84,6 @@
         {
             DomainName = $DomainName
             Credential= $DomainCredsFQDN
-            RestartCount = $RetryCount
-            WaitTimeout = $RetryIntervalSec
             DependsOn = '[WindowsFeature]ADAdminCenter'
         }
 
@@ -113,10 +115,5 @@
             TestScript = { $false}
             DependsOn = '[ADDomainController]BDC'
         }
-
-        xPendingReboot RebootAfterPromotion {
-            Name = "RebootAfterDCPromotion"
-            DependsOn = "[Script]UpdateDNSSettings"
-        }               
     }
 }
