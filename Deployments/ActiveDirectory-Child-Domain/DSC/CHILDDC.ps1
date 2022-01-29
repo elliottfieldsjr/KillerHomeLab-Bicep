@@ -1,32 +1,38 @@
-﻿configuration OTHERDC
+﻿configuration CHILDDC
 {
    param
     (
-        [String]$TimeZone,
+        [String]$TimeZone,        
         [String]$DomainName,
         [String]$DNSServerIP,
-        [String]$NetBiosDomain,
+        [String]$ChildNetBiosDomain,
+        [String]$ChildDomainName,
         [System.Management.Automation.PSCredential]$Admincreds,
         [Int]$RetryCount=20,
         [Int]$RetryIntervalSec=30
     )
 
+    Import-DscResource -ModuleName ActiveDirectoryDsc
     Import-DscResource -ModuleName xStorage
     Import-DscResource -ModuleName xNetworking
+    Import-DscResource -ModuleName xPendingReboot
+    Import-DscResource -ModuleName ComputerManagementDsc
     Import-DscResource -ModuleName xPSDesiredStateConfiguration
     Import-DscResource -ModuleName PSDesiredStateConfiguration
-    Import-DscResource -ModuleName ComputerManagementDsc
-    Import-DscResource -ModuleName ActiveDirectoryDsc
-    Import-DscResource -ModuleName xPendingReboot
     Import-DscResource -ModuleName DNSServerDsc
 
-    [System.Management.Automation.PSCredential ]$DomainCredsFQDN = New-Object System.Management.Automation.PSCredential ("$($Admincreds.UserName)@$($DomainName)", $Admincreds.Password)
+    [System.Management.Automation.PSCredential ]$DomainCreds = New-Object System.Management.Automation.PSCredential ("$($Admincreds.UserName)@${DomainName}", $Admincreds.Password)
 
     $Interface=Get-NetAdapter|Where Name -Like "Ethernet*"|Select-Object -First 1
     $InterfaceAlias=$($Interface.Name)
 
     Node localhost
     {
+        LocalConfigurationManager
+        {
+            RebootNodeIfNeeded = $true
+        }
+
         xWaitforDisk Disk2
         {
                 DiskId = 2
@@ -47,19 +53,11 @@
             Name = "AD-Domain-Services"
         }
 
-        WindowsFeature 'RSATADPowerShell'
-        {
-            Ensure    = 'Present'
-            Name      = 'RSAT-AD-PowerShell'
-
-            DependsOn = '[WindowsFeature]ADDSInstall'
-        }
-
         WindowsFeature ADDSTools
         {
             Ensure = "Present"
             Name = "RSAT-ADDS-Tools"
-            DependsOn = '[WindowsFeature]ADDSInstall'
+            DependsOn = "[WindowsFeature]ADDSInstall"
         }
 
         WindowsFeature ADAdminCenter
@@ -69,21 +67,32 @@
             DependsOn = "[WindowsFeature]ADDSTools"
         }
 
+        xDnsServerAddress DnsServerAddress
+        {
+            Address        = $DNSServerIP
+            InterfaceAlias = $InterfaceAlias
+            AddressFamily  = 'IPv4'
+            DependsOn="[WindowsFeature]ADDSInstall"
+        }
+
         WaitForADDomain DscForestWait
         {
             DomainName = $DomainName
-            Credential= $DomainCredsFQDN
-            DependsOn = '[WindowsFeature]ADAdminCenter'
+            Credential= $DomainCreds
+            WaitTimeout = $RetryIntervalSec
+            DependsOn = '[xDNSServerAddress]DnsServerAddress'
         }
 
-        ADDomainController BDC
+
+        ADDomain CHILD
         {
-            DomainName = $DomainName
-            Credential = $DomainCredsFQDN
-            SafemodeAdministratorPassword = $DomainCredsFQDN
+            DomainName = $ChildNetBiosDomain
+            Credential = $DomainCreds
+            SafemodeAdministratorPassword = $DomainCreds
             DatabasePath = "N:\NTDS"
             LogPath = "N:\NTDS"
             SysvolPath = "N:\SYSVOL"
+            ParentDomainName = $DomainName
             DependsOn = "[WaitForADDomain]DscForestWait"
         }
 
@@ -102,7 +111,12 @@
             }
             GetScript =  { @{} }
             TestScript = { $false}
-            DependsOn = '[ADDomainController]BDC'
+            DependsOn = '[xDNSServerAddress]DnsServerAddress'
         }
+
+        xPendingReboot RebootAfterPromotion {
+            Name = "RebootAfterDCPromotion"
+            DependsOn = "[Script]UpdateDNSSettings"
+        }               
     }
 }
