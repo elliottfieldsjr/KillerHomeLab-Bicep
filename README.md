@@ -10,7 +10,7 @@
 
 # Active Directory Child-Domain
 [![ActiveDirectory-Child-Domain](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/ActiveDirectory-Child-Domain.yml/badge.svg)](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/ActiveDirectory-Child-Domain.yml)
-<a href="./Deployments/ActiveDirectory-Child-Domain"><img src="Deployments/x_Images/ActiveDirectoryMultiChildDomain.png" alt="Active Directory Chid-Domain" width="150"></a>
+<a href="./Deployments/ActiveDirectory-Child-Domain"><img src="Deployments/x_Images/ActiveDirectoryChildDomain.png" alt="Active Directory Chid-Domain" width="150"></a>
 
 # Azure Network Watcher Connection Monitor
 [![ActiveDirectory-Multi-Site](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/AzureNetworkWatcher-Connection-Monitor.yml/badge.svg)](https://github.com/elliottfieldsjr/KillerHomeLab-Bicep/actions/workflows/AzureNetworkWatcher-Connection-Monitor.yml)
