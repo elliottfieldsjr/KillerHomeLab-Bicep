@@ -2,7 +2,7 @@
 env:
   Creds: ${{ secrets.AZURE_MAG2_CREDENTIALS }}
   SubscriptionID1: ${{ secrets.AZURE_MAG_SUB2 }}
-  ResourceGroup1Name:  "Child-Domain-GH2"
+  ResourceGroup1Name:  "Child-Domain-GH1"
   AzureCloudEnvironment:  "AzureUSGovernment"
   DeploymentName: "ActiveDirectory-Child-Domain"
   TimeZone1:  "Eastern Standard Time"

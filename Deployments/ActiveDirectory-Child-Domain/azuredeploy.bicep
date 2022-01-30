@@ -457,24 +457,6 @@ module createous2 'modules/createous.bicep' = {
   ]
 }
 
-module createsites2 'modules/createsites.bicep' = {
-  name: 'createsites2'
-  params: {
-    computerName: dc2Name
-    NamingConvention: NamingConvention
-    BaseDN: ChildBaseDN
-    Site1Prefix: VNet1Prefix
-    Site2Prefix: VNet2Prefix
-    artifactsLocation: artifactsLocation
-    artifactsLocationSasToken: artifactsLocationSasToken
-    location: Location2
-  }
-  dependsOn: [
-    createous2
-  ]
-}
-
-
 module deployWK1VM_11 'modules/1nic-1disk-vm.bicep' = if (WK1OSVersion == 'Windows-11') {
   name: 'deployWK1VM_11'
   params: {
