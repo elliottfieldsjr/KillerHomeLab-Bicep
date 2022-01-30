@@ -384,7 +384,8 @@ module deployDC2VM 'modules/1nic-2disk-vm.bicep' = {
     location: Location2
   }
   dependsOn: [
-    createsites
+    VNet1ToVNet2Peering
+    VNet2ToVNet1Peering
   ]
 }
 
