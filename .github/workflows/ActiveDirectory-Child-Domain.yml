@@ -2,7 +2,7 @@
 env:
   Creds: ${{ secrets.AZURE_MAG2_CREDENTIALS }}
   SubscriptionID1: ${{ secrets.AZURE_MAG_SUB2 }}
-  ResourceGroup1Name:  "Child-Domain-GH2"
+  ResourceGroup1Name:  "Child-Domain-GH3"
   AzureCloudEnvironment:  "AzureUSGovernment"
   DeploymentName: "ActiveDirectory-Child-Domain"
   TimeZone1:  "Eastern Standard Time"
@@ -78,7 +78,7 @@ jobs:
           SubDNSBaseDN="${{env.SubDNSBaseDN}}"                    
           ParentNetBiosDomain="${{env.ParentNetBiosDomain}}"
           ParentDomain="${{env.ParentDomain}}"
-          ChildNetBiosDomain="${{env.ChildBiosDomain}}"          
+          ChildNetBiosDomain="${{env.ChildNetBiosDomain}}"          
           TLD="${{env.TLD}}"          
           VNet1ID="${{env.VNet1ID}}"
           VNet2ID="${{env.VNet2ID}}"  

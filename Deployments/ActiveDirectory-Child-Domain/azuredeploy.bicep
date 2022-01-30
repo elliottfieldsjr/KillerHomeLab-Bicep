@@ -470,7 +470,7 @@ module createsites2 'modules/createsites.bicep' = {
     location: Location2
   }
   dependsOn: [
-    createous
+    createous2
   ]
 }
 
