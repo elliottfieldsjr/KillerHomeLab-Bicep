@@ -133,7 +133,7 @@ var ParentWIN11OUPath = 'OU=Windows 11,OU=Workstations,${ParentBaseDN}'
 var ParentWIN10OUPath = 'OU=Windows 10,OU=Workstations,${ParentBaseDN}'
 var ParentWIN7OUPath = 'OU=Windows 7,OU=Workstations,${ParentBaseDN}'
 var ChildDomainName = '${ChildNetBiosDomain}.${ParentDomainName}'
-var ChildBaseDN = 'DC=${ChildNetBiosDomain},DC=${ParentBaseDN}'
+var ChildBaseDN = 'DC=${ChildNetBiosDomain},${ParentBaseDN}'
 var ChildWIN11OUPath = 'OU=Windows 11,OU=Workstations,${ChildBaseDN}'
 var ChildWIN10OUPath = 'OU=Windows 10,OU=Workstations,${ChildBaseDN}'
 var ChildWIN7OUPath = 'OU=Windows 7,OU=Workstations,${ChildBaseDN}'
@@ -642,6 +642,7 @@ module DomainJoinWK1VM_11 'modules/domainjoin.bicep' = if (WK1OSVersion == 'Wind
     location: Location1
   }
   dependsOn: [
+    createous
     deployWK1VM_11
   ]
 }
@@ -657,6 +658,7 @@ module DomainJoinWK1VM_10 'modules/domainjoin.bicep' = if (WK1OSVersion == 'Wind
     location: Location1
   }
   dependsOn: [
+    createous
     deployWK1VM_10
   ]
 }
@@ -672,6 +674,7 @@ module DomainJoinWK1VM_7 'modules/domainjoin.bicep' = if (WK1OSVersion == 'Windo
     location: Location1
   }
   dependsOn: [
+    createous
     deployWK1VM_7
   ]
 }
@@ -687,6 +690,7 @@ module DomainJoinWK2VM_11 'modules/domainjoin.bicep' = if (WK2OSVersion == 'Wind
     location: Location2
   }
   dependsOn: [
+    createous2
     deployWK2VM_11
   ]
 }
@@ -702,8 +706,8 @@ module DomainJoinWK2VM_10 'modules/domainjoin.bicep' = if (WK2OSVersion == 'Wind
     location: Location2
   }
   dependsOn: [
+    createous2
     deployWK2VM_10
-    createous
   ]
 }
 
@@ -718,7 +722,7 @@ module DomainJoinWK2VM_7 'modules/domainjoin.bicep' = if (WK2OSVersion == 'Windo
     location: Location2
   }
   dependsOn: [
+    createous2
     deployWK2VM_7
-    createous
   ]
 }
